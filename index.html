@@ -11,7 +11,7 @@
 <title>Iron Log</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Baloo+2:wght@600;800&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0e0e0c; --s1: #171715; --s2: #201f1c; --s3: #2a2925; --line: #302f2a;
@@ -107,37 +107,68 @@
   .seg button.on.no { background: var(--s3); color: var(--text); border-color: var(--muted); }
 
   /* ---------- Hamster & Szene ---------- */
-  /* Comic-Panel */
-  .scene-wrap { position: relative; overflow: hidden; background: #5fb3f5; margin: -2px -2px 12px; border: 3px solid #111; box-shadow: 0 0 0 3px #f1efe6, 6px 6px 0 3px #000; }
+  /* 3D-Cartoon-Bühne */
+  .scene-wrap { position: relative; overflow: hidden; background: #5fb3f5; margin: -4px -4px 12px; border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.08); }
   .scene { display: block; width: 100%; height: auto; }
-  .scene-chip { position: absolute; top: 7px; font: 16px/1 "Bangers", var(--display); letter-spacing: .05em; text-transform: uppercase;
-    background: #ffe45c; color: #111; padding: 5px 8px 4px; border: 2.5px solid #111; border-radius: 0; box-shadow: 3px 3px 0 #111; }
-  .scene-chip.l { left: 7px; } .scene-chip.r { right: 7px; top: auto; bottom: 7px; font-size: 14px; }
+  .scene-chip { position: absolute; top: 8px; font: 800 13px/1 "Baloo 2", var(--body); background: rgba(255,255,255,.88); color: #1c1c1c;
+    padding: 6px 10px 5px; border: 0; border-radius: 99px; box-shadow: 0 3px 10px rgba(0,0,0,.25); backdrop-filter: blur(6px); }
+  .scene-chip.l { left: 8px; } .scene-chip.r { right: 8px; top: auto; bottom: 8px; }
   button.scene-chip { cursor: pointer; }
-  .comic { font-family: "Bangers", var(--display); letter-spacing: .05em; }
+  .comic { font-family: "Baloo 2", var(--body); font-weight: 800; }
   .rip { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
     padding-bottom: 14px; background: linear-gradient(transparent 40%, rgba(0,0,0,.65)); }
   .ham-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .ham-name { font: 40px/1 "Bangers", var(--display); letter-spacing: .04em; text-transform: uppercase; background: none; border: 0; color: #ffe45c;
-    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; padding: 0; cursor: pointer; text-align: left; }
-  .rays { transform-box: view-box; transform-origin: 180px 175px; animation: spin 80s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .ham-name { font: 800 36px/1 "Baloo 2", var(--body); background: none; border: 0; color: #ffcf7a; padding: 0; cursor: pointer; text-align: left;
+    text-shadow: 0 3px 0 #7a4a1c, 0 6px 14px rgba(0,0,0,.4); }
   .flicker { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker .5s ease-in-out infinite alternate; }
   @keyframes flicker { to { transform: scaleY(1.12) translateY(-2px); opacity: .85; } }
   .zap { animation: zap 1.4s steps(1) infinite; }
   @keyframes zap { 0%, 40%, 70% { opacity: 1; } 20%, 55%, 85% { opacity: .15; } }
-  .pop { transform-box: fill-box; transform-origin: center; animation: pop 1.5s ease-in-out infinite; }
-  @keyframes pop { 50% { transform: scale(1.08) rotate(-3deg); } }
+  /* Hamster-Animationen (3D-Gefühl) */
+  .sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 6s ease-in-out infinite; }
+  @keyframes sway { 0%, 100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+  .tilt { transform-box: fill-box; transform-origin: 50% 90%; animation: tilt 5s ease-in-out infinite; }
+  @keyframes tilt { 0%, 100% { transform: rotate(-2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-1.5px); } }
+  .earL, .earR { transform-box: fill-box; transform-origin: 50% 100%; animation: earL 4.6s ease-in-out infinite; }
+  .earR { animation-name: earR; animation-duration: 5.3s; }
+  @keyframes earL { 0%, 86%, 100% { transform: rotate(0); } 90% { transform: rotate(-14deg); } 94% { transform: rotate(4deg); } }
+  @keyframes earR { 0%, 80%, 100% { transform: rotate(0); } 84% { transform: rotate(14deg); } 88% { transform: rotate(-4deg); } }
+  .whisk { transform-box: fill-box; transform-origin: 50% 50%; animation: whisk 2.4s ease-in-out infinite; }
+  @keyframes whisk { 50% { transform: scaleY(1.12); } }
+  .pump { transform-box: fill-box; transform-origin: 50% 70%; animation: pump 1.8s ease-in-out infinite; }
+  @keyframes pump { 50% { transform: scale(1.1); } }
+  .squat { transform-box: fill-box; transform-origin: 50% 100%; animation: squat 1.5s ease-in-out infinite; }
+  @keyframes squat { 0%, 100% { transform: scaleY(1); } 50% { transform: scale(1.02, .97); } }
+  .flap { transform-box: fill-box; transform-origin: 50% 80%; animation: flap 1.8s ease-in-out infinite; }
+  @keyframes flap { 50% { transform: scaleX(1.08) translateY(-3px); } }
+  .cape { transform-box: fill-box; transform-origin: 50% 0; animation: cape 3s ease-in-out infinite; }
+  @keyframes cape { 50% { transform: skewX(-4deg) scaleX(1.04); } }
+  .twinkle { animation: twinkle 1.8s ease-in-out infinite; }
+  @keyframes twinkle { 50% { opacity: .35; } }
+  .firework { animation: firework 2.4s ease-out infinite; }
+  @keyframes firework { 0% { transform: scale(.1); opacity: 0; } 20% { opacity: 1; } 70% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.15); opacity: 0; } }
+  .bubble { transform-box: fill-box; transform-origin: 90% 100%; animation: bubble 4s ease-in-out infinite; }
+  @keyframes bubble { 50% { transform: translateY(-3px); } }
+  /* Tiefen-Effekt: Ebenen bewegen sich unterschiedlich weit → wirkt räumlich */
+  .par-a { animation: parA 16s ease-in-out infinite alternate; } .par-b { animation: parB 16s ease-in-out infinite alternate; }
+  .par-c { animation: parC 16s ease-in-out infinite alternate; } .par-d { animation: parD 16s ease-in-out infinite alternate; }
+  @keyframes parA { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
+  @keyframes parB { from { transform: translateX(-6px); } to { transform: translateX(6px); } }
+  @keyframes parC { from { transform: translateX(-9px); } to { transform: translateX(9px); } }
+  @keyframes parD { from { transform: translateX(12px); } to { transform: translateX(-12px); } }
+  .item .pv { height: 104px; border-radius: 6px; background: radial-gradient(circle at 50% 35%, #3a3f52, #1d1f28); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 4px; }
+  .item .pv svg { width: 100%; height: 100%; display: block; }
+  .item .meme.lux { background: linear-gradient(135deg, #f7d774, #c99a2e); color: #2a1f00; }
   .filters { display: flex; gap: 6px; overflow-x: auto; margin: 0 0 10px; padding-bottom: 2px; scrollbar-width: none; }
   .filters button { flex: 0 0 auto; height: 32px; padding: 0 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--s2); color: var(--muted);
     font: 700 12px var(--body); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
   .filters button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
-  .item .meme { position: absolute; top: 6px; right: 6px; font: 12px "Bangers", sans-serif; letter-spacing: .05em; background: #ff3ea5; color: #fff; padding: 2px 5px; border: 1.5px solid #111; transform: rotate(6deg); }
+  .item .meme { position: absolute; top: 8px; right: 8px; z-index: 1; font: 800 11px "Baloo 2", sans-serif; background: #ff3ea5; color: #fff; padding: 1px 7px; border-radius: 99px; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
   .item { position: relative; }
   .ba { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; gap: 4px; margin-bottom: 10px; }
   .ba > div { background: var(--s2); border-radius: 4px; text-align: center; padding: 6px 4px 8px; }
   .ba svg { width: 100%; height: 120px; display: block; }
-  .ba .arrow { font: 30px "Bangers", sans-serif; color: var(--lime); text-align: center; background: none; }
+  .ba .arrow { font: 800 28px "Baloo 2", sans-serif; color: var(--lime); text-align: center; background: none; }
   .perk { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
   .perk:first-of-type { border-top: 0; }
   .perk .pi { font-size: 22px; width: 30px; text-align: center; }
@@ -489,6 +520,66 @@
     <linearGradient id="g-storm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1f45"/><stop offset="1" stop-color="#6b5f8a"/></linearGradient>
     <linearGradient id="g-night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0f2e"/><stop offset="1" stop-color="#3a2f6b"/></linearGradient>
     <radialGradient id="glowGold"><stop offset="0" stop-color="#ffe45c" stop-opacity=".9"/><stop offset="1" stop-color="#ffe45c" stop-opacity="0"/></radialGradient>
+    <!-- Hamster: weiche 3D-Schattierung (Licht von links oben) -->
+    <radialGradient id="hb" cx=".34" cy=".28" r=".85"><stop offset="0" stop-color="#f3bd7a"/><stop offset=".55" stop-color="#d08d45"/><stop offset="1" stop-color="#93592a"/></radialGradient>
+    <radialGradient id="hw" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f6f1e9"/><stop offset="1" stop-color="#d8cdbd"/></radialGradient>
+    <radialGradient id="hd" cx=".34" cy=".3" r=".85"><stop offset="0" stop-color="#77767e"/><stop offset=".6" stop-color="#46454c"/><stop offset="1" stop-color="#26252a"/></radialGradient>
+    <radialGradient id="hp" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#ffd6d1"/><stop offset=".6" stop-color="#f4a59e"/><stop offset="1" stop-color="#d98078"/></radialGradient>
+    <radialGradient id="hear" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#dcb48c"/><stop offset="1" stop-color="#a77a4e"/></radialGradient>
+    <radialGradient id="hearIn" cx=".45" cy=".4" r=".75"><stop offset="0" stop-color="#f7dccb"/><stop offset="1" stop-color="#e2b394"/></radialGradient>
+    <radialGradient id="heye" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#b8692c"/><stop offset=".7" stop-color="#6b3612"/><stop offset="1" stop-color="#3a1a06"/></radialGradient>
+    <radialGradient id="hnose" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#ffc2c0"/><stop offset="1" stop-color="#e07f85"/></radialGradient>
+    <radialGradient id="hpimple" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#ff8a8a"/><stop offset="1" stop-color="#c8202f"/></radialGradient>
+    <radialGradient id="hdrop" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#e8f7ff"/><stop offset="1" stop-color="#58b4ff"/></radialGradient>
+    <radialGradient id="habs" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#efe6d8"/><stop offset="1" stop-color="#cdbda6"/></radialGradient>
+    <radialGradient id="hpec" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset=".75" stop-color="#e6dccd" stop-opacity=".4"/><stop offset="1" stop-color="#a98e6c" stop-opacity=".6"/></radialGradient>
+    <radialGradient id="hshadow"><stop offset="0" stop-color="#000" stop-opacity=".38"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="hgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3a8"/><stop offset=".45" stop-color="#f2c230"/><stop offset="1" stop-color="#a87a12"/></linearGradient>
+    <linearGradient id="hsteel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6e9ee"/><stop offset=".5" stop-color="#9aa1ab"/><stop offset="1" stop-color="#5b616b"/></linearGradient>
+    <linearGradient id="hrag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a39a86"/><stop offset="1" stop-color="#6e6656"/></linearGradient>
+    <linearGradient id="hlux" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b2b30"/><stop offset="1" stop-color="#0e0e10"/></linearGradient>
+    <linearGradient id="hshorts" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2ff6a"/><stop offset="1" stop-color="#9dc414"/></linearGradient>
+    <linearGradient id="hcape" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a52"/><stop offset="1" stop-color="#8e0f19"/></linearGradient>
+    <linearGradient id="hred" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6a5e"/><stop offset="1" stop-color="#c41f2a"/></linearGradient>
+    <linearGradient id="hcap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3a40"/><stop offset="1" stop-color="#121214"/></linearGradient>
+    <linearGradient id="hparty" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9b7dff"/><stop offset="1" stop-color="#5a38d8"/></linearGradient>
+    <linearGradient id="hglass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4a5c"/><stop offset="1" stop-color="#0b0d10"/></linearGradient>
+    <linearGradient id="hphones" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a4a52"/><stop offset="1" stop-color="#141416"/></linearGradient>
+    <linearGradient id="hshaker" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3a40"/><stop offset=".4" stop-color="#55555c"/><stop offset="1" stop-color="#141416"/></linearGradient>
+    <linearGradient id="hbanana" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff07a"/><stop offset="1" stop-color="#e0b41e"/></linearGradient>
+    <radialGradient id="hchicken" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#f0a860"/><stop offset="1" stop-color="#a0561c"/></radialGradient>
+    <linearGradient id="hfire" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff3b1f"/><stop offset=".6" stop-color="#ff9a1f"/><stop offset="1" stop-color="#ffe45c" stop-opacity=".2"/></linearGradient>
+    <linearGradient id="hfire2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff7a1f"/><stop offset=".6" stop-color="#ffd23f"/><stop offset="1" stop-color="#fff6b0" stop-opacity=".2"/></linearGradient>
+    <filter id="hgray"><feColorMatrix type="saturate" values="0"/></filter>
+    <filter id="hglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="hsoft" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-opacity=".3"/></filter>
+    <!-- Umgebung -->
+    <radialGradient id="sun" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fffbe0"/><stop offset=".6" stop-color="#ffd84a"/><stop offset="1" stop-color="#ffb21f"/></radialGradient>
+    <radialGradient id="sunGlow"><stop offset="0" stop-color="#fff6b0" stop-opacity=".7"/><stop offset="1" stop-color="#fff6b0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="moonGlow"><stop offset="0" stop-color="#fff4c2" stop-opacity=".35"/><stop offset="1" stop-color="#fff4c2" stop-opacity="0"/></radialGradient>
+    <linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe7f0"/></linearGradient>
+    <linearGradient id="cloudD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9b3bf"/><stop offset="1" stop-color="#6f7a87"/></linearGradient>
+    <linearGradient id="gHill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd47a"/><stop offset="1" stop-color="#4f9e45"/></linearGradient>
+    <linearGradient id="gHillN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a6a4a"/><stop offset="1" stop-color="#1e3a2a"/></linearGradient>
+    <linearGradient id="gSnowFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfdbe6"/></linearGradient>
+    <linearGradient id="gSnow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe5ee"/></linearGradient>
+    <linearGradient id="gGrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cd166"/><stop offset="1" stop-color="#3f9a3c"/></linearGradient>
+    <linearGradient id="gDirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a99a7c"/><stop offset="1" stop-color="#6f624a"/></linearGradient>
+    <linearGradient id="gMarble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf8f2"/><stop offset="1" stop-color="#d9d2c6"/></linearGradient>
+    <linearGradient id="gPool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe3ff"/><stop offset="1" stop-color="#1a9fd6"/></linearGradient>
+    <radialGradient id="tree" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#7fd06a"/><stop offset="1" stop-color="#2f7d33"/></radialGradient>
+    <radialGradient id="treeN" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#2f5d3a"/><stop offset="1" stop-color="#173322"/></radialGradient>
+    <linearGradient id="ebox" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4a466"/><stop offset="1" stop-color="#a5773e"/></linearGradient>
+    <linearGradient id="ewood" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b47a44"/><stop offset="1" stop-color="#8a5a2c"/></linearGradient>
+    <linearGradient id="eroof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5a3a"/><stop offset="1" stop-color="#4e3620"/></linearGradient>
+    <linearGradient id="eroofRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e5574a"/><stop offset="1" stop-color="#a42f27"/></linearGradient>
+    <linearGradient id="ewall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf2"/><stop offset="1" stop-color="#dcd3c4"/></linearGradient>
+    <linearGradient id="ewall2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3dcd0"/></linearGradient>
+    <linearGradient id="eglass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9ecff"/><stop offset="1" stop-color="#4f9ed0"/></linearGradient>
+    <linearGradient id="ecrate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2453c"/><stop offset="1" stop-color="#9c1f1a"/></linearGradient>
+    <linearGradient id="erust" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8693a"/><stop offset="1" stop-color="#6a3416"/></linearGradient>
+    <linearGradient id="epad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4a52"/><stop offset="1" stop-color="#141416"/></linearGradient>
+    <linearGradient id="ecar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a52"/><stop offset=".55" stop-color="#d41a22"/><stop offset="1" stop-color="#7e0b12"/></linearGradient>
   </defs>
 </svg>
 <div class="rest" id="restPanel"></div>
@@ -509,6 +600,13 @@ function load() {
   try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
   s = Object.assign(DEFAULTS(), s || {});
   delete s.pet; delete s.petUndo; // alter Buddy wird durch den Hamster ersetzt
+  // Startausstattung: kaputte Klamotten, Karton, Müll, rostige Hantel
+  ['rags', 'box', 'trash', 'crate'].forEach(id => { if (!s.items.includes(id)) s.items.push(id); });
+  s.equip = s.equip || {};
+  if (!s.equip.home) s.equip.home = 'box';
+  if (!s.equip.ground) s.equip.ground = 'trash';
+  if (!s.equip.gym) s.equip.gym = 'crate';
+  if (!s.startDone) { if (!s.equip.body) s.equip.body = 'rags'; s.startDone = true; }
   return s;
 }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { alert('Speichern im Browser nicht möglich.'); } }
@@ -631,7 +729,7 @@ function totals() {
 // =====================================================================
 const GRACE_D = 2;          // 2 Ruhetage sind ok
 const DEATH_D = 30;         // nach 1 Monat ohne Training stirbt er an Fettleibigkeit
-const BASE_GAIN = 0.9;      // Muskelaufbau pro 60-Minuten-Training (vor Bonus)
+const BASE_GAIN = 0.6;      // Muskelaufbau pro 60-Minuten-Training (vor Bonus) – bewusst langsam: Bodybuilder erst nach Monaten
 const LOSS_PER_DAY = 20 * BASE_GAIN * 3 / 7;  // Abbau: 20× so schnell wie der Aufbau bei 3 Trainings/Woche (~7,7 %/Tag)
 const FAT_PER_DAY = 1.5;    // ohne Training wird er fett
 const HYG_PER_DAY = 4;      // ... und ungepflegt
@@ -686,8 +784,8 @@ function trainHam(meta) {
   const intensity = 1 + .3 * (meta.fails / Math.max(1, meta.exCount)) + .03 * Math.min(meta.improvements, 10) + .01 * Math.min(meta.sets, 30);
   const testo = state.testo ? 1.6 : 1;
   const muscleGain = BASE_GAIN * dur * intensity * testo * (perk('meta', st.fat) ? 1.15 : 1) * (1 - st.muscle / 130);
-  const fatLoss = 1.4 * dur * intensity * (st.fat / 100 + .2);
-  const hygGain = 5 * Math.min(dur, 1.5) + 1; // Pflege wird langsam besser – nicht alles auf einmal
+  const fatLoss = .9 * dur * intensity * (st.fat / 100 + .2);   // Heilung dauert: ca. 2–3 % Fett pro Woche
+  const hygGain = 4 * Math.min(dur, 1.5) + 1;                   // Pflege wird langsam besser – nicht alles auf einmal
   h.muscle = clamp(st.muscle + muscleGain, 0, 100);
   h.fat = clamp(st.fat - fatLoss, 6, 100);
   h.hyg = clamp(st.hyg + hygGain, 0, 100);
@@ -752,306 +850,436 @@ const PERKS = [
 const perk = (id, fat) => fat < PERKS.find(p => p.id === id).fat;
 
 // =====================================================================
-//  Hamster – Shop
+//  Hamster – Shop: Freischalten = Kerne UND Trainings/Stunden
 // =====================================================================
 const SLOT_NAMES = { head: 'Kopf', eyes: 'Augen', face: 'Gesicht', ears: 'Ohren', neck: 'Hals', body: 'Oberteil', legs: 'Hose', waist: 'Gürtel',
-  wrist: 'Handgelenk', hand: 'In der Hand', gear: 'Hantel', back: 'Rücken', aura: 'Aura' };
+  wrist: 'Handgelenk', feet: 'Schuhe', hand: 'In der Hand', gear: 'Hantel', back: 'Rücken', aura: 'Aura',
+  home: 'Zuhause', ground: 'Boden', gym: 'Trainingsgerät', ride: 'Fahrzeug', sky: 'Himmel' };
+const ENV_SLOTS = ['home', 'ground', 'gym', 'ride', 'sky'];
+const STARTER = { body: 'rags', home: 'box', ground: 'trash', gym: 'crate' };
 const ITEMS = [
-  { id: 'banana',   slot: 'hand',  name: 'Banane zum Größenvergleich', ic: '🍌', price: 69,   req: {}, meme: 1 },
-  { id: 'wrist',    slot: 'wrist', name: 'Schweißbänder',              ic: '🎽', price: 80,   req: {} },
-  { id: 'headband', slot: 'head',  name: 'Stirnband',                  ic: '🟥', price: 120,  req: {} },
-  { id: 'shorts',   slot: 'legs',  name: 'Gym-Shorts',                 ic: '🩳', price: 150,  req: {} },
-  { id: 'party',    slot: 'head',  name: 'Partyhut',                   ic: '🥳', price: 150,  req: {} },
-  { id: 'beanie',   slot: 'head',  name: 'Wollmütze',                  ic: '🧶', price: 180,  req: {} },
-  { id: 'stache',   slot: 'face',  name: 'Gentleman-Schnurrbart',      ic: '🥸', price: 200,  req: {} },
-  { id: 'shaker',   slot: 'hand',  name: 'Proteinshaker',              ic: '🥤', price: 250,  req: {} },
-  { id: 'tank',     slot: 'body',  name: 'Tanktop „IRON“',             ic: '👕', price: 250,  req: { n: 5 } },
-  { id: 'chicken',  slot: 'hand',  name: 'Hähnchen & Reis',            ic: '🍗', price: 300,  req: { n: 5 }, meme: 1 },
-  { id: 'shades',   slot: 'eyes',  name: 'Sonnenbrille',               ic: '🕶️', price: 300,  req: { h: 5 } },
-  { id: 'lift',     slot: 'body',  name: 'Shirt „Do you even lift?“',  ic: '🤨', price: 350,  req: { n: 3 }, meme: 1 },
-  { id: 'cap',      slot: 'head',  name: 'Snapback',                   ic: '🧢', price: 350,  req: { h: 10 } },
-  { id: 'mask',     slot: 'eyes',  name: 'Helden-Maske',               ic: '🦸', price: 400,  req: { n: 8 } },
-  { id: 'bar_iron', slot: 'gear',  name: 'Eisenhantel',                ic: '🏋️', price: 400,  req: { h: 10 } },
-  { id: 'stonks',   slot: 'neck',  name: 'Stonks-Krawatte',            ic: '📈', price: 420,  req: { h: 12 }, meme: 1 },
-  { id: 'phones',   slot: 'ears',  name: 'Kopfhörer',                  ic: '🎧', price: 450,  req: { h: 20 } },
-  { id: 'legday',   slot: 'body',  name: 'Shirt „Never skip leg day“', ic: '🦵', price: 450,  req: { n: 10 }, meme: 1 },
-  { id: 'goldtooth',slot: 'face',  name: 'Goldzahn',                   ic: '🦷', price: 500,  req: { h: 25 } },
-  { id: 'lw',       slot: 'body',  name: 'Shirt „Light weight, baby!“',ic: '🗣️', price: 550,  req: { h: 30 }, meme: 1 },
-  { id: 'belt',     slot: 'waist', name: 'Hebergürtel',                ic: '🥋', price: 600,  req: { m: 30 } },
-  { id: 'deal',     slot: 'eyes',  name: 'Deal-with-it-Brille',        ic: '😎', price: 666,  req: { h: 8 }, meme: 1 },
-  { id: 'cape',     slot: 'back',  name: 'Heldenumhang',               ic: '🦹', price: 700,  req: { h: 15 } },
-  { id: 'chain',    slot: 'neck',  name: 'Goldkette',                  ic: '📿', price: 900,  req: { h: 50 } },
-  { id: 'jaw',      slot: 'face',  name: 'Mega-Kinn',                  ic: '🗿', price: 1337, req: { m: 40 }, meme: 1 },
-  { id: 'bar_gold', slot: 'gear',  name: 'Goldhantel',                 ic: '🏆', price: 1500, req: { h: 100 } },
-  { id: 'wings',    slot: 'back',  name: 'Engelsflügel',               ic: '🪽', price: 1600, req: { h: 60 } },
-  { id: 'zap',      slot: 'aura',  name: 'Blitz-Aura',                 ic: '⚡', price: 1800, req: { m: 50 } },
-  { id: 'fire',     slot: 'aura',  name: 'Flammen-Aura',               ic: '🔥', price: 2000, req: { h: 80 } },
-  { id: 'crown',    slot: 'head',  name: 'Krone',                      ic: '👑', price: 2500, req: { h: 150 } }
+  // --- Start (kaputt & billig) ---
+  { id: 'rags',      slot: 'body',   name: 'Kaputte Klamotten',            price: 0,     req: {}, start: 1 },
+  { id: 'box',       slot: 'home',   name: 'Karton-Bude',                  price: 0,     req: {}, start: 1 },
+  { id: 'trash',     slot: 'ground', name: 'Müll & Schrott',               price: 0,     req: {}, start: 1 },
+  { id: 'crate',     slot: 'gym',    name: 'Getränkekiste & rostige Hantel', price: 0,   req: {}, start: 1 },
+  // --- Kleidung & Accessoires ---
+  { id: 'banana',    slot: 'hand',   name: 'Banane zum Größenvergleich',   price: 169,   req: { n: 2 }, meme: 1 },
+  { id: 'wrist',     slot: 'wrist',  name: 'Schweißbänder',                price: 200,   req: { n: 2 } },
+  { id: 'headband',  slot: 'head',   name: 'Stirnband',                    price: 300,   req: { n: 3 } },
+  { id: 'shorts',    slot: 'legs',   name: 'Gym-Shorts',                   price: 350,   req: { n: 4 } },
+  { id: 'party',     slot: 'head',   name: 'Partyhut',                     price: 400,   req: { n: 5 } },
+  { id: 'beanie',    slot: 'head',   name: 'Wollmütze',                    price: 450,   req: { n: 6 } },
+  { id: 'stache',    slot: 'face',   name: 'Gentleman-Schnurrbart',        price: 500,   req: { n: 6 } },
+  { id: 'shaker',    slot: 'hand',   name: 'Proteinshaker',                price: 600,   req: { n: 8 } },
+  { id: 'tank',      slot: 'body',   name: 'Tanktop „IRON“',               price: 800,   req: { n: 10 } },
+  { id: 'lift',      slot: 'body',   name: 'Shirt „Do you even lift?“',    price: 900,   req: { n: 8 }, meme: 1 },
+  { id: 'chicken',   slot: 'hand',   name: 'Hähnchen & Reis',              price: 900,   req: { n: 10 }, meme: 1 },
+  { id: 'shades',    slot: 'eyes',   name: 'Sonnenbrille',                 price: 1000,  req: { h: 10 } },
+  { id: 'cap',       slot: 'head',   name: 'Snapback',                     price: 1100,  req: { h: 12 } },
+  { id: 'bar_iron',  slot: 'gear',   name: 'Eisenhantel',                  price: 1200,  req: { h: 12 } },
+  { id: 'mask',      slot: 'eyes',   name: 'Helden-Maske',                 price: 1300,  req: { n: 15 } },
+  { id: 'stonks',    slot: 'neck',   name: 'Stonks-Krawatte',              price: 1400,  req: { h: 15 }, meme: 1 },
+  { id: 'legday',    slot: 'body',   name: 'Shirt „Never skip leg day“',   price: 1500,  req: { n: 20 }, meme: 1 },
+  { id: 'phones',    slot: 'ears',   name: 'Kopfhörer',                    price: 1600,  req: { h: 20 } },
+  { id: 'deal',      slot: 'eyes',   name: 'Deal-with-it-Brille',          price: 1666,  req: { h: 18 }, meme: 1 },
+  { id: 'goldtooth', slot: 'face',   name: 'Goldzahn',                     price: 2000,  req: { h: 30 } },
+  { id: 'lw',        slot: 'body',   name: 'Shirt „Light weight, baby!“',  price: 2200,  req: { h: 35 }, meme: 1 },
+  { id: 'belt',      slot: 'waist',  name: 'Hebergürtel',                  price: 2500,  req: { h: 30, m: 30 } },
+  { id: 'cape',      slot: 'back',   name: 'Heldenumhang',                 price: 3000,  req: { h: 40 } },
+  { id: 'jaw',       slot: 'face',   name: 'Mega-Kinn',                    price: 3337,  req: { m: 40, n: 40 }, meme: 1 },
+  { id: 'watch',     slot: 'wrist',  name: 'Gold-Uhr',                     price: 4500,  req: { h: 60 }, lux: 1 },
+  { id: 'chain',     slot: 'neck',   name: 'Goldkette',                    price: 5000,  req: { h: 70 }, lux: 1 },
+  { id: 'sneakers',  slot: 'feet',   name: 'Designer-Sneaker',             price: 6000,  req: { h: 80 }, lux: 1 },
+  { id: 'wings',     slot: 'back',   name: 'Engelsflügel',                 price: 6500,  req: { h: 100 } },
+  { id: 'zap',       slot: 'aura',   name: 'Blitz-Aura',                   price: 7000,  req: { h: 100, m: 50 } },
+  { id: 'designer',  slot: 'body',   name: 'Designer-Trainingsanzug',      price: 7500,  req: { h: 90 }, lux: 1 },
+  { id: 'fire',      slot: 'aura',   name: 'Flammen-Aura',                 price: 8000,  req: { h: 120 } },
+  { id: 'bar_gold',  slot: 'gear',   name: 'Goldhantel',                   price: 9000,  req: { h: 120 }, lux: 1 },
+  { id: 'crown',     slot: 'head',   name: 'Krone',                        price: 12000, req: { h: 180 }, lux: 1 },
+  // --- Umgebung ---
+  { id: 'grass',     slot: 'ground', name: 'Gepflegter Rasen',             price: 1000,  req: { n: 8 } },
+  { id: 'lights',    slot: 'sky',    name: 'Lichterkette',                 price: 1200,  req: { n: 10 } },
+  { id: 'hut',       slot: 'home',   name: 'Holzhütte',                    price: 1500,  req: { n: 12 } },
+  { id: 'bike',      slot: 'ride',   name: 'Fahrrad',                      price: 1800,  req: { n: 15 } },
+  { id: 'bench',     slot: 'gym',    name: 'Hantelbank',                   price: 2000,  req: { n: 15 } },
+  { id: 'garden',    slot: 'ground', name: 'Blumengarten',                 price: 3500,  req: { h: 40 } },
+  { id: 'scooter',   slot: 'ride',   name: 'E-Roller',                     price: 4000,  req: { h: 45 } },
+  { id: 'house',     slot: 'home',   name: 'Hamster-Häuschen',             price: 5000,  req: { h: 50 } },
+  { id: 'rack',      slot: 'gym',    name: 'Power-Rack',                   price: 6000,  req: { h: 70 } },
+  { id: 'fireworks', slot: 'sky',    name: 'Feuerwerk',                    price: 9000,  req: { h: 100 }, lux: 1 },
+  { id: 'terrace',   slot: 'ground', name: 'Marmor-Terrasse mit Pool',     price: 12000, req: { h: 120 }, lux: 1 },
+  { id: 'villa',     slot: 'home',   name: 'Villa',                        price: 20000, req: { h: 150, n: 120 }, lux: 1 },
+  { id: 'sportscar', slot: 'ride',   name: 'Sportwagen',                   price: 30000, req: { h: 200, n: 150 }, lux: 1 }
 ];
-const FILTERS = [['all', 'Alle'], ['meme', 'Memes'], ['head', 'Kopf'], ['face', 'Gesicht'], ['body', 'Kleidung'], ['hand', 'Hand'], ['extra', 'Extras'], ['own', 'Meins']];
+const FILTERS = [['all', 'Alle'], ['env', 'Umgebung'], ['body', 'Kleidung'], ['head', 'Kopf & Gesicht'], ['hand', 'Hand & Extras'], ['lux', 'Luxus'], ['meme', 'Memes'], ['own', 'Meins']];
 let shopFilter = 'all';
 const priceOf = (it, fat) => Math.round(it.price * (perk('shred', fat) ? .9 : 1));
-const PIMPLE_POS = [[-22, 2, 'h'], [24, -8, 'h'], [-8, -20, 'h'], [12, 22, 'h'], [-30, 18, 'h'], [-20, -10, 'b'], [26, 6, 'b'], [-34, 20, 'b'],
-  [8, -22, 'b'], [36, -14, 'b'], [-6, 30, 'b'], [18, -26, 'h']];
+const PIMPLE_POS = [[-22, 4, 'h'], [24, -6, 'h'], [-8, -22, 'h'], [14, 22, 'h'], [-30, 18, 'h'], [-20, -10, 'b'], [26, 6, 'b'], [-30, 20, 'b'],
+  [8, -22, 'b'], [32, -14, 'b'], [-6, 30, 'b'], [18, -26, 'h']];
 
 // =====================================================================
-//  Hamster – Grafik im Comic-Stil (dicke Tusche-Linien, Rasterpunkte, Schatten)
+//  Hamster – 3D-Cartoon-Grafik (weiche Schattierung, flauschiges Fell, Animation)
 // =====================================================================
-const INK = '#111';
+const LINE = 'rgba(92,56,24,.55)';
+// Flauschiger Fellrand: Ellipse mit spitzen Fellbüscheln
+function fluff(x, y, rx, ry, n, amp, seed = 1, a0 = 0, a1 = Math.PI * 2) {
+  const mn = Math.min(rx, ry), base = 1 - amp * .2 / mn;
+  const P = (a, r) => `${(x + Math.cos(a) * rx * r).toFixed(1)},${(y + Math.sin(a) * ry * r).toFixed(1)}`;
+  let d = `M${P(a0, base)}`;
+  for (let i = 0; i < n; i++) {
+    const s = a0 + (a1 - a0) * i / n, e = a0 + (a1 - a0) * (i + 1) / n, mid = (s + e) / 2;
+    const tip = 1 + amp * (1 + .45 * Math.sin(seed * 7.3 + i * 12.99)) / mn;
+    d += ` Q${P(s + (mid - s) * .7, base + (tip - base) * .2)} ${P(mid, tip)} Q${P(mid + (e - mid) * .3, base + (tip - base) * .2)} ${P(e, base)}`;
+  }
+  return d + (a1 - a0 >= 6.28 ? 'Z' : '');
+}
+// Sichel-Form (für Farbflecken und Schatten auf einer Seite)
+const crescent = (x, y, rx, ry, k, side = 1) => `M${x},${y - ry} A${rx},${ry} 0 0 ${side > 0 ? 1 : 0} ${x},${y + ry} A${rx * k},${ry} 0 0 ${side > 0 ? 0 : 1} ${x},${y - ry}Z`;
+
 function hamSVG(st, pose = 'idle', eq = state.equip) {
   const dead = st.dead, f = st.fat / 100, m = st.muscle / 100, hy = st.hyg / 100;
-  const C = dead
-    ? { fur: '#a9a59b', dark: '#7b776e', light: '#c8c4b9', cream: '#e2ded3', pink: '#c2b3ae' }
-    : { fur: '#f5a43f', dark: '#c4621a', light: '#ffcb7a', cream: '#fff4e0', pink: '#ff9a9e' };
   const dis = id => !dead && st.diseases && st.diseases.find(d => d.id === id).active;
-  const cx = 120;
-  const bRx = 40 + 38 * f + 2 * m, bRy = 46 + 9 * f - 4 * m, bCy = 168 + 2 * m;
-  const shRx = 30 + 50 * m, shRy = 26 + 14 * m, shCy = 138 - 8 * m;
-  const hR = 40 + 4 * f - 2 * m, hCy = 86 - 4 * m + 4 * f;
-  const armW = 10 + 18 * m + 6 * f, shX = 28 + 40 * m + 14 * f;
+  const cx = 120, G = 228;
+  const bRx = 40 + 34 * f + 4 * m, bRy = 50 + 6 * f - 4 * m, bCy = 172;
+  const shRx = 30 + 46 * m, shRy = 24 + 12 * m, shCy = 140 - 6 * m;
+  const hR = 42 + 4 * f - 2 * m, hCy = 84 - 3 * m + 3 * f;
+  const armW = 9 + 15 * m + 5 * f, shX = 26 + 38 * m + 12 * f, shY = shCy - 6;
   if (pose === 'idle' && m > .42 && st.mood === 'happy' && !dead) pose = 'flex';
-  const gearC = eq.gear === 'bar_gold' ? '#ffd23f' : eq.gear === 'bar_iron' ? '#4b4b48' : '#a8693a';
+  const gearC = eq.gear === 'bar_gold' ? 'url(#hgold)' : eq.gear === 'bar_iron' ? '#4b4d52' : '#9b6a3c';
+  const FUR = 'url(#hb)', WHITE = 'url(#hw)', DARK = 'url(#hd)', PINK = 'url(#hp)';
+  let back = '', body = '', arms = '', head = '', face = '', fx = '';
 
-  // Ebenen: jede Ebene bekommt eine Tusche-Silhouette darunter → Comic-Umrisse ohne Linien im Inneren
-  const mk = () => ({ ink: [], col: [] });
-  const L = { body: mk(), arms: mk(), head: mk() };
-  const ell = (ly, x, y, rx, ry, fill, w = 7) => { ly.ink.push(`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${INK}" stroke="${INK}" stroke-width="${w}"/>`); ly.col.push(`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}"/>`); };
-  const pth = (ly, d, fill, w = 7) => { ly.ink.push(`<path d="${d}" fill="${INK}" stroke="${INK}" stroke-width="${w}" stroke-linejoin="round"/>`); ly.col.push(`<path d="${d}" fill="${fill}"/>`); };
-  const limb = (ly, pts, w, fill) => { ly.ink.push(`<polyline points="${pts}" fill="none" stroke="${INK}" stroke-width="${w + 7}" stroke-linecap="round" stroke-linejoin="round"/>`); ly.col.push(`<polyline points="${pts}" fill="none" stroke="${fill}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`); };
-  const out = ly => ly.ink.join('') + ly.col.join('');
-  // Comic-Schatten (Sichel rechts, mit Rasterpunkten) und Glanzlicht links oben
-  const shade = (x, y, rx, ry, op = .55) => { const d = `M${x},${y - ry * .97} A${rx * .97},${ry * .97} 0 0 1 ${x},${y + ry * .97} A${rx * .6},${ry * .97} 0 0 0 ${x},${y - ry * .97}Z`;
-    return `<path d="${d}" fill="${C.dark}" opacity="${op}"/><path d="${d}" fill="url(#dots)" opacity=".22"/>`; };
-  const hl = (x, y, rx, ry) => `<path d="M${x - rx * .66},${y - ry * .2} Q${x - rx * .58},${y - ry * .72} ${x - rx * .14},${y - ry * .86}" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/>`;
-  const ink = (d, w = 2.5, extra = '') => `<path d="${d}" fill="none" stroke="${INK}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
+  // ---------- Hinter dem Hamster: Glanz, Auren, Umhang, Flügel ----------
+  back += `<ellipse cx="${cx}" cy="${G}" rx="${48 + 30 * f}" ry="8" fill="url(#hshadow)"/>`;
+  if (!dead && perk('glow', st.fat)) back += `<ellipse cx="${cx}" cy="140" rx="112" ry="104" fill="url(#glowGold)" opacity=".5"/>`;
+  if (!dead && eq.aura === 'fire') back += `<g class="flicker">${[-104, -72, -40, -8, 24, 56, 88].map((dx, i) => `<path d="M${cx + dx},${G} q-16,-70 ${12 + i},-${150 + (i % 2) * 40 - Math.abs(dx) * .4} q6,50 26,74 q8,-36 2,-62 q36,52 6,${126 - (i % 2) * 6}Z" fill="url(#${i % 2 ? 'hfire2' : 'hfire'})" opacity=".92"/>`).join('')}</g>`;
+  if (!dead && eq.aura === 'zap') back += `<g class="zap" fill="#bff6ff" stroke="#3ad7ff" stroke-width="2" stroke-linejoin="round" filter="url(#hglow)">
+    <path d="M${cx - 94},40 l18,30 l-10,2 l20,36 l-30,-30 l10,-2Z"/><path d="M${cx + 90},30 l-16,34 l10,0 l-22,38 l32,-32 l-10,0Z"/>
+    <path d="M${cx - 102},150 l22,10 l-6,6 l24,12 l-30,-6 l6,-6Z"/><path d="M${cx + 98},150 l-22,12 l6,4 l-24,14 l32,-8 l-6,-4Z"/></g>`;
+  if (eq.back === 'wings') back += `<g class="flap">${[-1, 1].map(k => `<path d="M${cx + k * 20},120 C${cx + k * 70},56 ${cx + k * 122},66 ${cx + k * 114},90 C${cx + k * 126},104 ${cx + k * 106},116 ${cx + k * 110},130 C${cx + k * 98},136 ${cx + k * 88},148 ${cx + k * 84},158 C${cx + k * 60},152 ${cx + k * 40},148 ${cx + k * 24},150Z"
+    fill="url(#hw)" stroke="rgba(120,110,100,.5)" stroke-width="1.5"/><path d="M${cx + k * 60},100 q${k * 20},4 ${k * 34},-4 M${cx + k * 56},122 q${k * 20},4 ${k * 40},-2 M${cx + k * 50},140 q${k * 14},2 ${k * 28},0" stroke="rgba(150,140,130,.6)" stroke-width="2" fill="none"/>`).join('')}</g>`;
+  if (eq.back === 'cape') back += `<g class="cape"><path d="M${cx - shRx * .7},${shCy - 14} Q${cx - bRx - 40},${bCy + 10} ${cx - bRx - 26},${G - 4} Q${cx},${G - 14} ${cx + bRx + 30},${G - 4} Q${cx + bRx + 42},${bCy + 8} ${cx + shRx * .7},${shCy - 14}Z"
+    fill="url(#hcape)"/><path d="M${cx - bRx - 10},${G - 16} q10,-40 4,-80 M${cx + bRx + 12},${G - 16} q-8,-40 -2,-80" stroke="rgba(0,0,0,.25)" stroke-width="3" fill="none"/></g>`;
 
-  let back = '', bodyDeco = '', armDeco = '', headDeco = '', fx = '';
-  // ---------- Hintergrund-Effekte (Aura, Umhang, Flügel) ----------
-  if (!dead && perk('glow', st.fat)) back += `<ellipse cx="${cx}" cy="140" rx="110" ry="100" fill="url(#glowGold)" opacity=".55"/>`;
-  if (!dead && eq.aura === 'fire') back += `<g class="flicker">${[-112, -80, -48, -16, 16, 48, 80].map((dx, i) => `<path d="M${cx + dx},214 q-16,-70 ${10 + i},-${150 + (i % 2) * 40 - Math.abs(dx) * .4} q6,50 26,74 q8,-36 2,-62 q36,52 6,130Z" fill="${i % 2 ? '#ffb02e' : '#ff4b1f'}" stroke="${INK}" stroke-width="3"/>`).join('')}</g>`;
-  if (!dead && eq.aura === 'zap') back += `<g class="zap" fill="#7df9ff" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round">
-    <path d="M${cx - 92},40 l18,30 l-10,2 l20,36 l-30,-30 l10,-2Z"/><path d="M${cx + 88},30 l-16,34 l10,0 l-22,38 l32,-32 l-10,0Z"/>
-    <path d="M${cx - 100},150 l22,10 l-6,6 l24,12 l-30,-6 l6,-6Z"/><path d="M${cx + 96},150 l-22,12 l6,4 l-24,14 l32,-8 l-6,-4Z"/></g>`;
-  if (eq.back === 'wings') back += [-1, 1].map(k => `<path d="M${cx + k * 20},120 C${cx + k * 70},60 ${cx + k * 120},70 ${cx + k * 112},92 C${cx + k * 122},104 ${cx + k * 104},116 ${cx + k * 108},128 C${cx + k * 96},134 ${cx + k * 88},146 ${cx + k * 84},156 C${cx + k * 60},150 ${cx + k * 40},146 ${cx + k * 24},150Z"
-    fill="#fff" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M${cx + k * 60},100 q${k * 20},4 ${k * 34},-4 M${cx + k * 56},122 q${k * 20},4 ${k * 40},-2 M${cx + k * 50},140 q${k * 14},2 ${k * 28},0" stroke="${INK}" stroke-width="2.5" fill="none"/>`).join('');
-  if (eq.back === 'cape') back += `<path d="M${cx - shRx * .7},${shCy - 14} Q${cx - bRx - 40},${bCy + 10} ${cx - bRx - 26},214 Q${cx},204 ${cx + bRx + 30},214 Q${cx + bRx + 42},${bCy + 8} ${cx + shRx * .7},${shCy - 14}Z"
-    fill="#d81e2c" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M${cx - bRx - 10},200 q10,-40 4,-80 M${cx + bRx + 12},200 q-8,-40 -2,-80" stroke="#8e0f19" stroke-width="3" fill="none"/>`;
-
-  // ---------- Körper ----------
-  ell(L.body, cx - 24, 216, 15, 7, C.pink); ell(L.body, cx + 24, 216, 15, 7, C.pink);
-  ell(L.body, cx, bCy, bRx, bRy, C.fur);
-  if (m > .35) pth(L.body, `M${cx - 22},${hCy + 20} L${cx - shRx * .8},${shCy - shRy * .55} L${cx + shRx * .8},${shCy - shRy * .55} L${cx + 22},${hCy + 20}Z`, C.fur);
-  ell(L.body, cx, shCy, shRx, shRy, C.fur);
-  if (m > .3) pth(L.body, `M${cx - shRx * .92},${shCy + 4} Q${cx - bRx * .9},${bCy - 18} ${cx - bRx * .7},${bCy + 6} L${cx + bRx * .7},${bCy + 6} Q${cx + bRx * .9},${bCy - 18} ${cx + shRx * .92},${shCy + 4}Z`, C.fur);
-  bodyDeco += shade(cx, bCy, bRx, bRy) + (m > .15 ? shade(cx, shCy, shRx, shRy, .4) : '') + hl(cx, bCy, bRx, bRy);
-  bodyDeco += `<ellipse cx="${cx}" cy="${bCy + 8}" rx="${bRx * .62}" ry="${bRy * .74}" fill="${C.cream}" stroke="${INK}" stroke-width="2.5"/>`;
-  if (f > .45) for (let i = 0; i < 2; i++) { const w = bRx * .45, y = bCy + 2 + i * 15; bodyDeco += ink(`M${cx - w},${y} q${w},9 ${2 * w},0`, 2.5, `opacity="${clamp((f - .45) * 3)}"`); }
+  // ---------- Beine & Füße ----------
+  [-1, 1].forEach(k => {
+    body += `<ellipse cx="${cx + k * 20}" cy="${G - 12}" rx="${12 + 5 * f + 3 * m}" ry="14" fill="${k < 0 ? FUR : DARK}"/>`;
+    if (eq.feet === 'sneakers') body += `<path d="M${cx + k * 20 - 16},${G} q0,-14 14,-14 q14,0 18,8 q4,6 0,8Z" transform="${k < 0 ? `translate(${2 * (cx + k * 20)},0) scale(-1,1)` : ''}" fill="#fafafa" stroke="rgba(0,0,0,.25)"/>
+      <path d="M${cx + k * 20 - 10},${G - 5} h18" stroke="url(#hgold)" stroke-width="3" transform="${k < 0 ? `translate(${2 * (cx + k * 20)},0) scale(-1,1)` : ''}"/>`;
+    else body += `<ellipse cx="${cx + k * 22}" cy="${G - 2}" rx="15" ry="6.5" fill="${PINK}"/>` + [-8, -3, 2, 7].map(t => `<ellipse cx="${cx + k * 22 + t * 1.4}" cy="${G - 4}" rx="2.6" ry="3.2" fill="#ffc4bf"/>`).join('');
+  });
+  // ---------- Körper (dreifarbig: braun, weiß, dunkel) ----------
+  body += `<path d="${fluff(cx, bCy, bRx, bRy, 46, 2.1, 3)}" fill="${FUR}" stroke="${LINE}" stroke-width="1.4"/>`;
+  body += `<path d="${crescent(cx, bCy, bRx * .97, bRy * .95, .35, 1)}" fill="${DARK}" opacity=".95"/>`;                         // dunkler Fleck rechts
+  if (m > .35) body += `<path d="M${cx - 22},${hCy + 22} L${cx - shRx * .82},${shCy - shRy * .5} L${cx + shRx * .82},${shCy - shRy * .5} L${cx + 22},${hCy + 22}Z" fill="${FUR}"/>`;
+  body += `<path d="${fluff(cx, shCy, shRx, shRy, 32, 1.7, 5)}" fill="${FUR}" stroke="${LINE}" stroke-width="1.2"/>`;
+  if (m > .3) body += `<path d="M${cx - shRx * .92},${shCy + 4} Q${cx - bRx * .92},${bCy - 18} ${cx - bRx * .72},${bCy + 6} L${cx + bRx * .72},${bCy + 6} Q${cx + bRx * .92},${bCy - 18} ${cx + shRx * .92},${shCy + 4}Z" fill="${FUR}"/>`;
+  // weißer Bauch/Brust
+  const wRx = bRx * .66, wRy = bRy * .86;
+  body += `<path d="${fluff(cx - 2, bCy + 4, wRx, wRy, 32, 1.5, 9)}" fill="${WHITE}"/>`;
+  body += `<path d="${fluff(cx, shCy + 2, Math.max(18, shRx * .55), shRy * .8, 20, 1.3, 4)}" fill="${WHITE}"/>`;
+  // Volumen: Licht links, Schatten rechts
+  body += `<path d="${crescent(cx, bCy, bRx * .95, bRy * .93, .55, 1)}" fill="#000" opacity=".12"/><ellipse cx="${cx - bRx * .35}" cy="${bCy - bRy * .35}" rx="${bRx * .3}" ry="${bRy * .22}" fill="#fff" opacity=".18"/>`;
+  // Speckröllchen
+  if (f > .45) for (let i = 0; i < 2; i++) { const w = wRx * .7, y = bCy + 4 + i * 15; body += `<path d="M${cx - w},${y} q${w},10 ${2 * w},0" fill="none" stroke="rgba(120,90,60,.35)" stroke-width="2.2" stroke-linecap="round" opacity="${clamp((f - .45) * 3)}"/>`; }
+  // Sixpack & Brustmuskeln (weich schattiert)
   const absA = clamp((m - .22) * 2.2) * clamp((.38 - f) * 4);
   if (absA > 0) for (let r = 0; r < 3; r++) for (let c = 0; c < 2; c++)
-    bodyDeco += `<rect x="${cx - 13 + c * 15}" y="${bCy - 16 + r * 14}" width="11" height="11" rx="4" fill="#ffe2bd" stroke="${INK}" stroke-width="2" opacity="${absA}"/>`;
-  if (m > .3) [-1, 1].forEach(k => bodyDeco += `<ellipse cx="${cx + k * shRx * .36}" cy="${shCy + 2}" rx="${shRx * .36}" ry="${shRy * .62}" fill="${C.light}" stroke="${INK}" stroke-width="2.5" opacity="${clamp((m - .3) * 3)}"/>`);
-  else if (m > .12) bodyDeco += ink(`M${cx - shRx * .72},${shCy - 6} q${shRx * .36},${8 + 16 * m} ${shRx * .7},2 M${cx + shRx * .72},${shCy - 6} q${-shRx * .36},${8 + 16 * m} ${-shRx * .7},2`, 2.5, `opacity="${clamp(m * 1.4)}"`);
-  if (dis('joint')) bodyDeco += `<g transform="rotate(-25 ${cx + 30} 206)"><rect x="${cx + 20}" y="201" width="20" height="9" rx="3" fill="#f3d9b8" stroke="${INK}" stroke-width="2"/><path d="M${cx + 27},203v5M${cx + 33},203v5" stroke="${INK}"/></g>`;
-  // Kleidung
-  const shirt = { tank: ['#1d1d1b', '#d4ff3a', ['IRON']], lift: ['#fff', '#111', ['DO YOU', 'EVEN LIFT?']], legday: ['#9aa0a6', '#111', ['NEVER SKIP', 'LEG DAY']], lw: ['#d81e2c', '#ffe45c', ['LIGHT WEIGHT', 'BABY!']] }[eq.body];
-  if (shirt) {
-    const t1 = shRx * .52, t2 = bRx * .92;
-    bodyDeco += `<path d="M${cx - t1},${shCy - 16} Q${cx},${shCy - 2} ${cx + t1},${shCy - 16} L${cx + t2},${bCy + bRy * .55} Q${cx},${bCy + bRy * .95} ${cx - t2},${bCy + bRy * .55}Z" fill="${shirt[0]}" stroke="${INK}" stroke-width="3"/>`
-      + shirt[2].map((t, i) => `<text x="${cx}" y="${bCy - 6 + i * 15 - (shirt[2].length - 1) * 4}" text-anchor="middle" font-family="Bangers,Impact,sans-serif" font-size="${shirt[2].length > 1 ? 12.5 : 17}" fill="${shirt[1]}" letter-spacing=".5">${t}</text>`).join('');
-  }
-  if (eq.legs === 'shorts') bodyDeco += `<path d="M${cx - bRx * .86},${bCy + bRy * .42} L${cx + bRx * .86},${bCy + bRy * .42} L${cx + bRx * .8},212 L${cx + 5},212 L${cx},199 L${cx - 5},212 L${cx - bRx * .8},212Z" fill="#d4ff3a" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`;
-  if (eq.waist === 'belt') bodyDeco += `<rect x="${cx - bRx * .92}" y="${bCy + bRy * .3}" width="${bRx * 1.84}" height="12" rx="3" fill="#5a3a22" stroke="${INK}" stroke-width="2.5"/><rect x="${cx - 9}" y="${bCy + bRy * .3 - 2}" width="18" height="16" rx="3" fill="#ffd23f" stroke="${INK}" stroke-width="2.5"/>`;
-  if (eq.neck === 'stonks') bodyDeco += `<path d="M${cx},${hCy + hR - 4} l-8,6 l5,8 l-7,${bCy - hCy - hR - 4} l10,14 l10,-14 l-7,${-(bCy - hCy - hR - 4)} l5,-8Z" fill="#2b5fd9" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/>
+    body += `<rect x="${cx - 14 + c * 16}" y="${bCy - 14 + r * 14}" width="12" height="12" rx="5" fill="url(#habs)" opacity="${absA}"/>`;
+  if (m > .25) [-1, 1].forEach(k => body += `<ellipse cx="${cx + k * shRx * .34}" cy="${shCy + 4}" rx="${shRx * .34}" ry="${shRy * .55}" fill="url(#hpec)" opacity="${clamp((m - .25) * 3)}"/>`);
+  // Dreck & Pflaster
+  if (hy < .4 && !dead) [[-18, -6], [22, 18], [-26, 26], [10, -20]].forEach(([dx, dy], i) => body += `<ellipse cx="${cx + dx}" cy="${bCy + dy}" rx="${7 - i}" ry="${4.5 - i * .5}" fill="#6b4a2a" opacity="${clamp((.4 - hy) * 2.2)}"/>`);
+  if (dis('joint')) body += `<g transform="rotate(-25 ${cx + 22} ${G - 14})"><rect x="${cx + 10}" y="${G - 19}" width="22" height="10" rx="4" fill="#f3d9b8" stroke="rgba(0,0,0,.2)"/><path d="M${cx + 18},${G - 17}v6M${cx + 24},${G - 17}v6" stroke="rgba(0,0,0,.25)"/></g>`;
+  // ---------- Kleidung ----------
+  const tee = (fill, extra = '', torn = false) => {
+    const t1 = shRx * .55 + 6, t2 = bRx * .95, top = shCy - 18, bot = bCy + bRy * .55;
+    const hem = torn ? Array.from({ length: 9 }, (_, i) => `L${(cx + t2 - i * (2 * t2) / 8).toFixed(1)},${(bot + (i % 2 ? -7 : 3)).toFixed(1)}`).join(' ') : `Q${cx},${bot + 10} ${cx - t2},${bot}`;
+    return `<path d="M${cx - t1},${top} Q${cx},${top + 12} ${cx + t1},${top} L${cx + t1 + 14},${top + 6} L${cx + t2 + 4},${shCy + 10} L${cx + t2},${bot} ${hem} L${cx - t2 - 4},${shCy + 10} L${cx - t1 - 14},${top + 6}Z" fill="${fill}"/>
+      <path d="${crescent(cx, (top + bot) / 2, t2, (bot - top) / 2, .5, 1)}" fill="#000" opacity=".12"/>${extra}`;
+  };
+  const print = (lines, color, size) => lines.map((t, i) => `<text x="${cx}" y="${bCy - 6 + i * (size + 2) - (lines.length - 1) * 4}" text-anchor="middle" font-family="'Baloo 2',Barlow,sans-serif" font-weight="800" font-size="${size}" fill="${color}">${t}</text>`).join('');
+  if (eq.body === 'rags') body += tee('url(#hrag)', `<ellipse cx="${cx - 14}" cy="${bCy - 10}" rx="6" ry="4.5" fill="#3b2f25" opacity=".8"/><ellipse cx="${cx + 18}" cy="${bCy + 14}" rx="4.5" ry="6" fill="#3b2f25" opacity=".8"/>
+    <rect x="${cx + 4}" y="${bCy - 26}" width="13" height="11" fill="#8a6a4a" transform="rotate(12 ${cx + 10} ${bCy - 20})"/><path d="M${cx + 4},${bCy - 26} l13,11 M${cx + 6},${bCy - 18} h3 M${cx + 12},${bCy - 22} h3" stroke="#3b2f25" stroke-width="1"/>
+    <ellipse cx="${cx - 6}" cy="${bCy + 22}" rx="10" ry="5" fill="#7a6a42" opacity=".45"/>`, true);
+  if (eq.body === 'tank') body += tee('#202124', print(['IRON'], '#d4ff3a', 17));
+  if (eq.body === 'lift') body += tee('#f6f6f6', print(['DO YOU', 'EVEN LIFT?'], '#1b1b1b', 12));
+  if (eq.body === 'legday') body += tee('#9aa0a6', print(['NEVER SKIP', 'LEG DAY'], '#1b1b1b', 12));
+  if (eq.body === 'lw') body += tee('#d81e2c', print(['LIGHT WEIGHT', 'BABY!'], '#ffe45c', 11.5));
+  if (eq.body === 'designer') body += tee('url(#hlux)', `<path d="M${cx},${shCy - 12} V${bCy + bRy * .55}" stroke="url(#hgold)" stroke-width="3"/><circle cx="${cx}" cy="${shCy - 6}" r="3" fill="url(#hgold)"/>
+    <path d="M${cx - bRx * .9},${bCy - 30} L${cx - bRx * .9 + 6},${bCy + 30} M${cx + bRx * .9},${bCy - 30} L${cx + bRx * .9 - 6},${bCy + 30}" stroke="url(#hgold)" stroke-width="4"/>`);
+  if (eq.legs === 'shorts') body += `<path d="M${cx - bRx * .88},${bCy + bRy * .4} L${cx + bRx * .88},${bCy + bRy * .4} L${cx + bRx * .82},${G - 8} L${cx + 5},${G - 8} L${cx},${G - 22} L${cx - 5},${G - 8} L${cx - bRx * .82},${G - 8}Z" fill="url(#hshorts)"/>`;
+  if (eq.waist === 'belt') body += `<rect x="${cx - bRx * .92}" y="${bCy + bRy * .28}" width="${bRx * 1.84}" height="13" rx="4" fill="#5a3a22"/><rect x="${cx - 10}" y="${bCy + bRy * .28 - 2}" width="20" height="17" rx="4" fill="url(#hgold)"/>`;
+  if (eq.neck === 'stonks') body += `<path d="M${cx},${hCy + hR - 4} l-8,6 l5,8 l-7,${bCy - hCy - hR - 4} l10,14 l10,-14 l-7,${-(bCy - hCy - hR - 4)} l5,-8Z" fill="#2b5fd9"/>
     <path d="M${cx - 5},${bCy - 4} l4,-8 l3,4 l5,-10" stroke="#3dff6a" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
 
   // ---------- Arme ----------
-  let hand = null;
-  const fist = (x, y) => { ell(L.arms, x, y, 7 + 2 * m, 7 + 2 * m, C.pink, 6); if (eq.wrist === 'wrist') armDeco += `<rect x="${x - 8}" y="${y + 3}" width="16" height="6" rx="2" fill="#ff3b30" stroke="${INK}" stroke-width="2"/>`; };
+  const hand = (x, y, k, up) => {
+    let h = `<ellipse cx="${x}" cy="${y}" rx="${7 + 2 * m}" ry="${6.5 + 2 * m}" fill="${PINK}"/>`;
+    [-2, -1, 1, 2].forEach(i => { const a = (up ? -Math.PI / 2 : Math.PI / 2) + i * .38 * k; h += `<ellipse cx="${(x + Math.cos(a) * (8 + 2 * m)).toFixed(1)}" cy="${(y + Math.sin(a) * (8 + 2 * m)).toFixed(1)}" rx="2.4" ry="4" transform="rotate(${(a * 180 / Math.PI + 90).toFixed(0)} ${(x + Math.cos(a) * (8 + 2 * m)).toFixed(1)} ${(y + Math.sin(a) * (8 + 2 * m)).toFixed(1)})" fill="#ffb3ad"/>`; });
+    if (eq.wrist === 'wrist') h += `<rect x="${x - 9}" y="${y + (up ? 6 : -14)}" width="18" height="7" rx="3" fill="#ff3b30"/>`;
+    if (eq.wrist === 'watch' && k < 0) h += `<rect x="${x - 9}" y="${y + (up ? 6 : -15)}" width="18" height="8" rx="3" fill="url(#hgold)"/><circle cx="${x}" cy="${y + (up ? 10 : -11)}" r="4.5" fill="#1d2b3a" stroke="url(#hgold)" stroke-width="1.5"/>`;
+    return h;
+  };
+  const armPath = (pts, k, w) => {
+    const upper = `${pts[0]} ${pts[1]}`, lower = pts.length > 2 ? `${pts[1]} ${pts[2]}` : null;
+    return `<polyline points="${upper}" fill="none" stroke="${k < 0 ? FUR : DARK}" stroke-width="${w}" stroke-linecap="round"/>` +
+      (lower ? `<polyline points="${lower}" fill="none" stroke="${WHITE}" stroke-width="${w * .88}" stroke-linecap="round"/>` : '');
+  };
+  let handPos = null;
   if (pose === 'lift' && !dead) {
-    const pw = 7 + 6 * m, ph = 22 + 22 * m, barY = hCy - hR - 12, reach = Math.max(shX, hR) + 14;
-    let bar = `<line x1="${cx - reach - 46}" y1="${barY}" x2="${cx + reach + 46}" y2="${barY}" stroke="${INK}" stroke-width="9" stroke-linecap="round"/><line x1="${cx - reach - 46}" y1="${barY}" x2="${cx + reach + 46}" y2="${barY}" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>`;
+    const pw = 8 + 6 * m, ph = 24 + 22 * m, barY = hCy - hR - 12, reach = Math.max(shX, hR) + 14;
+    let bar = `<rect x="${cx - reach - 50}" y="${barY - 3}" width="${2 * reach + 100}" height="6" rx="3" fill="url(#hsteel)"/>`;
     [-1, 1].forEach(k => {
-      for (let i = 0; i < 2; i++) bar += `<rect x="${cx + k * (reach + 30 + i * (pw + 2)) - pw / 2}" y="${barY - ph / 2 + i * 4}" width="${pw}" height="${ph - i * 8}" rx="2" fill="${gearC}" stroke="${INK}" stroke-width="2.5"/>`;
-      const sx = cx + k * shX * .8, sy = shCy - 4, ex = cx + k * (reach + 8), ey = hCy + 4, hx = cx + k * reach, hy2 = barY + 6;
-      limb(L.arms, `${sx},${sy} ${ex},${ey} ${hx},${hy2}`, armW, C.fur);
-      if (m > .18) ell(L.arms, (sx + ex) / 2 + k * 2, (sy + ey) / 2 - 4, armW * .5 + 5 * m, armW * .45 + 6 * m, C.fur, 5);
-      fist(hx, hy2);
+      for (let i = 0; i < 2; i++) bar += `<rect x="${cx + k * (reach + 32 + i * (pw + 2)) - pw / 2}" y="${barY - ph / 2 + i * 4}" width="${pw}" height="${ph - i * 8}" rx="3" fill="${gearC}"/>`;
+      const s = [cx + k * shX * .8, shY + 2], e = [cx + k * (reach + 8), hCy + 4], h = [cx + k * reach, barY + 7];
+      arms += armPath([s.join(','), e.join(','), h.join(',')], k, armW);
+      if (m > .18) arms += `<ellipse class="pump" cx="${(s[0] + e[0]) / 2 + k * 2}" cy="${(s[1] + e[1]) / 2 - 4}" rx="${armW * .5 + 5 * m}" ry="${armW * .45 + 6 * m}" fill="${k < 0 ? FUR : DARK}"/>`;
+      arms += hand(h[0], h[1], k, true);
     });
-    armDeco = bar + armDeco;
+    arms = `<g class="lift">${bar}${arms}</g>`;
   } else if (pose === 'flex') {
     [-1, 1].forEach(k => {
-      const sx = cx + k * shX * .8, sy = shCy - 8, ex = cx + k * (shX + 26 + 8 * m), ey = shCy - 6, hx = cx + k * (shX + 20 + 6 * m), hy2 = shCy - 52;
-      limb(L.arms, `${sx},${sy} ${ex},${ey} ${hx},${hy2}`, armW, C.fur);
-      ell(L.arms, cx + k * (shX + 12 + 4 * m), shCy - 16, armW * .62 + 7 * m, armW * .58 + 7 * m, C.fur, 5);
-      armDeco += ink(`M${cx + k * (shX + 4)},${shCy - 20} q${k * 10},-${8 + 6 * m} ${k * 20},-2`, 2.5) + `<path d="M${cx + k * (shX + 4)},${shCy - 26} q${k * 8},-6 ${k * 14},-4" stroke="#fff" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>`;
-      fist(hx, hy2); if (k === 1) hand = [hx, hy2];
+      const s = [cx + k * shX * .8, shY - 2], e = [cx + k * (shX + 26 + 8 * m), shCy - 6], h = [cx + k * (shX + 20 + 6 * m), shCy - 54];
+      arms += armPath([s.join(','), e.join(','), h.join(',')], k, armW);
+      const bx = (s[0] + e[0]) / 2 + k * 2, by = (s[1] + e[1]) / 2 - armW * .32;
+      arms += `<ellipse class="pump" cx="${bx}" cy="${by}" rx="${armW * .46 + 3 * m}" ry="${armW * .42 + 3 * m}" fill="${k < 0 ? FUR : DARK}"/>
+        <ellipse cx="${bx - k * 3}" cy="${by - armW * .25}" rx="${armW * .25 + 2 * m}" ry="${armW * .14 + 1.5 * m}" fill="#fff" opacity=".28"/>`;
+      arms += hand(h[0], h[1], k, true); if (k === 1) handPos = h;
     });
   } else {
     [-1, 1].forEach(k => {
-      const sx = cx + k * shX * .85, sy = shCy - 2, hx = cx + k * (shX + 8 + 6 * f), hy2 = 176 - 6 * m;
-      limb(L.arms, `${sx},${sy} ${hx},${hy2}`, armW, C.fur);
-      if (m > .25) ell(L.arms, (sx + hx) / 2 + k * 3, (sy + hy2) / 2 - 2, armW * .52 + 4 * m, armW * .5 + 5 * m, C.fur, 5);
-      fist(hx, hy2); if (k === 1) hand = [hx, hy2];
+      const s = [cx + k * shX * .85, shY + 2], e = [cx + k * (shX + 12 + 6 * f), shY + 30], h = [cx + k * (shX + 22 + 8 * f), shY + 56 - 4 * m];
+      arms += armPath([s.join(','), e.join(','), h.join(',')], k, armW);
+      if (m > .25) arms += `<ellipse class="pump" cx="${(s[0] + e[0]) / 2 + k * 3}" cy="${(s[1] + e[1]) / 2}" rx="${armW * .52 + 4 * m}" ry="${armW * .5 + 5 * m}" fill="${k < 0 ? FUR : DARK}"/>`;
+      arms += hand(h[0], h[1], k, false); if (k === 1) handPos = h;
     });
   }
-  // Gegenstand in der Hand
-  if (hand && !dead) {
-    const [x, y] = hand;
-    if (eq.hand === 'shaker') armDeco += `<rect x="${x - 8}" y="${y - 30}" width="16" height="28" rx="3" fill="#222" stroke="${INK}" stroke-width="2.5"/><rect x="${x - 9}" y="${y - 36}" width="18" height="8" rx="2" fill="#d4ff3a" stroke="${INK}" stroke-width="2.5"/><text x="${x}" y="${y - 12}" text-anchor="middle" font-family="Bangers,sans-serif" font-size="8" fill="#d4ff3a">WHEY</text>`;
-    if (eq.hand === 'banana') armDeco += `<path d="M${x - 4},${y - 4} C${x - 2},${y - 30} ${x + 18},${y - 44} ${x + 30},${y - 40} C${x + 20},${y - 34} ${x + 8},${y - 22} ${x + 6},${y - 2}Z" fill="#ffe14d" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/><path d="M${x + 28},${y - 41} l4,-3" stroke="${INK}" stroke-width="3"/>`;
-    if (eq.hand === 'chicken') armDeco += `<ellipse cx="${x + 4}" cy="${y - 22}" rx="11" ry="14" fill="#c8742f" stroke="${INK}" stroke-width="2.5"/><path d="M${x + 1},${y - 10} l-3,10" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="${x - 3}" cy="${y + 1}" r="3.5" fill="#fff" stroke="${INK}" stroke-width="1.5"/><path d="M${x},${y - 28} q4,-3 8,0" stroke="#ffe0b0" stroke-width="2" fill="none"/>`;
+  if (handPos && !dead) {
+    const [x, y] = handPos;
+    if (eq.hand === 'shaker') arms += `<rect x="${x - 8}" y="${y - 32}" width="16" height="28" rx="4" fill="url(#hshaker)"/><rect x="${x - 9}" y="${y - 38}" width="18" height="8" rx="3" fill="#d4ff3a"/><text x="${x}" y="${y - 14}" text-anchor="middle" font-family="Barlow,sans-serif" font-weight="800" font-size="7" fill="#d4ff3a">WHEY</text>`;
+    if (eq.hand === 'banana') arms += `<path d="M${x - 4},${y - 4} C${x - 2},${y - 30} ${x + 18},${y - 44} ${x + 30},${y - 40} C${x + 20},${y - 34} ${x + 8},${y - 22} ${x + 6},${y - 2}Z" fill="url(#hbanana)"/><path d="M${x + 28},${y - 41} l4,-3" stroke="#5a4a1a" stroke-width="3"/>`;
+    if (eq.hand === 'chicken') arms += `<ellipse cx="${x + 4}" cy="${y - 22}" rx="11" ry="14" fill="url(#hchicken)"/><path d="M${x + 1},${y - 10} l-3,10" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="${x - 3}" cy="${y + 1}" r="3.5" fill="#fff"/>`;
   }
 
   // ---------- Kopf ----------
-  [-1, 1].forEach(k => ell(L.head, cx + k * 30, hCy - 32, 14, 14, C.fur));
-  if (f > .5) ell(L.head, cx, hCy + hR - 6, 22 + 14 * f, 8 + 7 * f, C.fur);
-  ell(L.head, cx, hCy, hR, hR, C.fur);
-  if (eq.face === 'jaw' && !dead) pth(L.head, `M${cx - 22},${hCy + 18} L${cx - 20},${hCy + hR + 6} Q${cx},${hCy + hR + 16} ${cx + 20},${hCy + hR + 6} L${cx + 22},${hCy + 18}Z`, C.fur);
-  [-1, 1].forEach(k => ell(L.head, cx + k * (26 + 6 * f), hCy + 14, 15 + 10 * f, 13 + 7 * f, C.light, 5));
-  headDeco += [-1, 1].map(k => `<circle cx="${cx + k * 30}" cy="${hCy - 32}" r="8" fill="${C.pink}" stroke="${INK}" stroke-width="2"/>`).join('');
-  headDeco += shade(cx, hCy, hR, hR, .45) + hl(cx, hCy, hR, hR);
-  if (hy < .35 && !dead) headDeco += `<path d="M${cx - 20},${hCy - hR + 6} l5,-14 l5,11 l6,-16 l5,14 l6,-13 l5,12 l6,-10 l2,10Z" fill="${C.dark}" stroke="${INK}" stroke-width="2" stroke-linejoin="round" opacity="${clamp((.35 - hy) * 4)}"/>
-    <path d="M${cx - bRx + 2},${bCy - 10} l-9,-4 l7,-3 l-8,-6 l10,1" fill="${C.dark}" stroke="${INK}" stroke-width="2" opacity="${clamp((.35 - hy) * 4)}"/>
-    <path d="M${cx + bRx - 2},${bCy + 4} l9,-3 l-6,-4 l8,-6 l-10,2" fill="${C.dark}" stroke="${INK}" stroke-width="2" opacity="${clamp((.35 - hy) * 4)}"/>`;
-  if (eq.face === 'jaw' && !dead) headDeco += ink(`M${cx},${hCy + hR + 2} v8`, 2.5) + [[-10, 34], [-4, 38], [6, 36], [12, 33], [0, 42]].map(([dx, dy]) => `<circle cx="${cx + dx}" cy="${hCy + dy}" r="1.2" fill="#5a3418"/>`).join('');
-  headDeco += `<ellipse cx="${cx}" cy="${hCy + 14}" rx="20" ry="14" fill="${C.cream}" stroke="${INK}" stroke-width="2.5"/>`;
-  if (!dead) headDeco += [-1, 1].map(k => `<ellipse cx="${cx + k * 27}" cy="${hCy + 11}" rx="8" ry="5" fill="${dis('bp') ? '#ff3b3b' : C.pink}" opacity="${dis('bp') ? .8 : .6}"/>`).join('');
+  const ear = k => `<g class="${k < 0 ? 'earL' : 'earR'}"><ellipse cx="${cx + k * 32}" cy="${hCy - hR * .72}" rx="15" ry="14" fill="url(#hear)"/><ellipse cx="${cx + k * 32}" cy="${hCy - hR * .7}" rx="9" ry="8.5" fill="url(#hearIn)"/></g>`;
+  head += ear(-1) + ear(1);
+  if (f > .5) head += `<path d="${fluff(cx, hCy + hR - 4, 24 + 14 * f, 8 + 7 * f, 16, 1.4, 2)}" fill="${WHITE}"/>`;
+  // Backen-Fellbüschel
+  [-1, 1].forEach(k => head += `<path d="${fluff(cx + k * (hR * .72 + 6 * f), hCy + 12, 14 + 9 * f, 13 + 6 * f, 12, 2.4, 6 + k)}" fill="${k < 0 ? FUR : DARK}"/>`);
+  head += `<path d="${fluff(cx, hCy, hR, hR * .96, 46, 1.5, 7)}" fill="${FUR}" stroke="${LINE}" stroke-width="1.3"/>`;
+  head += `<path d="M${cx - 3},${hCy - hR + 1} Q${cx - hR * .95},${hCy - hR * .9} ${cx - hR + 2},${hCy + 2} Q${cx - hR * .55},${hCy - 6} ${cx - 10},${hCy - 18}Z" fill="${DARK}"/>`; // dunkler Fleck
+  head += `<path d="M${cx - 5},${hCy - hR + 4} Q${cx - 5},${hCy - 12} ${cx - 20},${hCy + 10} Q${cx - hR * .7},${hCy + hR * .72} ${cx},${hCy + hR * .92} Q${cx + hR * .7},${hCy + hR * .72} ${cx + 20},${hCy + 10} Q${cx + 5},${hCy - 12} ${cx + 5},${hCy - hR + 4}Z" fill="${WHITE}"/>`; // weiße Blesse & Schnauze
+  [-1, 1].forEach(k => head += `<path d="${fluff(cx + k * (hR * .62 + 5 * f), hCy + 16, 11 + 7 * f, 10 + 5 * f, 11, 1.7, 3 + k)}" fill="${WHITE}"/>`);
+  if (eq.face === 'jaw' && !dead) head += `<path d="M${cx - 22},${hCy + 18} L${cx - 20},${hCy + hR + 8} Q${cx},${hCy + hR + 18} ${cx + 20},${hCy + hR + 8} L${cx + 22},${hCy + 18}Z" fill="${WHITE}" stroke="${LINE}" stroke-width="1.2"/><path d="M${cx},${hCy + hR + 4} v8" stroke="rgba(0,0,0,.25)" stroke-width="2"/>`
+    + [[-10, 34], [-4, 38], [6, 36], [12, 33], [0, 42]].map(([dx, dy]) => `<circle cx="${cx + dx}" cy="${hCy + dy}" r="1.1" fill="#7a5a3a"/>`).join('');
+  head += `<path d="${crescent(cx, hCy, hR * .95, hR * .92, .55, 1)}" fill="#000" opacity=".1"/><ellipse cx="${cx - hR * .38}" cy="${hCy - hR * .45}" rx="${hR * .3}" ry="${hR * .2}" fill="#fff" opacity=".22"/>`;
+  if (hy < .35 && !dead) head += `<path d="${fluff(cx, hCy - hR + 4, 18, 8, 8, 4.5, 11, Math.PI, Math.PI * 2)}" fill="${FUR}" opacity="${clamp((.35 - hy) * 4)}"/>`
+    + [-1, 1].map(k => `<path d="M${cx + k * (bRx - 2)},${bCy - 6} l${k * 12},-5 l${-k * 7},-3 l${k * 10},-7 l${-k * 12},1" fill="${k < 0 ? FUR : DARK}" opacity="${clamp((.35 - hy) * 4)}"/>`).join('');
+  // Wangenröte
+  if (!dead) head += [-1, 1].map(k => `<ellipse cx="${cx + k * 26}" cy="${hCy + 13}" rx="9" ry="5.5" fill="${dis('bp') ? '#ff3b3b' : '#ff9aa0'}" opacity="${dis('bp') ? .7 : .45}"/>`).join('');
   // Augen
   const brave = !dead && f < .35;
-  if (dead) headDeco += ink(`M${cx - 21},${hCy - 10}l11,11M${cx - 10},${hCy - 10}l-11,11M${cx + 10},${hCy - 10}l11,11M${cx + 21},${hCy - 10}l-11,11`, 3.5);
-  else if (eq.eyes === 'mask') headDeco += `<path d="M${cx - 34},${hCy - 8} Q${cx - 30},${hCy - 20} ${cx - 14},${hCy - 16} Q${cx},${hCy - 10} ${cx + 14},${hCy - 16} Q${cx + 30},${hCy - 20} ${cx + 34},${hCy - 8} Q${cx + 30},${hCy + 6} ${cx + 14},${hCy + 4} Q${cx},${hCy - 2} ${cx - 14},${hCy + 4} Q${cx - 30},${hCy + 6} ${cx - 34},${hCy - 8}Z" fill="#111"/>
-      <path d="M${cx - 24},${hCy - 6} Q${cx - 16},${hCy - 12} ${cx - 8},${hCy - 6} Q${cx - 16},${hCy - 3} ${cx - 24},${hCy - 6}Z M${cx + 24},${hCy - 6} Q${cx + 16},${hCy - 12} ${cx + 8},${hCy - 6} Q${cx + 16},${hCy - 3} ${cx + 24},${hCy - 6}Z" fill="#fff"/>`;
+  if (dead) face += [-1, 1].map(k => `<path d="M${cx + k * 16 - 6},${hCy - 10}l12,12M${cx + k * 16 + 6},${hCy - 10}l-12,12" stroke="#3a3530" stroke-width="3.5" stroke-linecap="round"/>`).join('');
+  else if (eq.eyes === 'mask') face += `<path d="M${cx - 36},${hCy - 8} Q${cx - 30},${hCy - 22} ${cx - 14},${hCy - 17} Q${cx},${hCy - 11} ${cx + 14},${hCy - 17} Q${cx + 30},${hCy - 22} ${cx + 36},${hCy - 8} Q${cx + 30},${hCy + 7} ${cx + 14},${hCy + 4} Q${cx},${hCy - 2} ${cx - 14},${hCy + 4} Q${cx - 30},${hCy + 7} ${cx - 36},${hCy - 8}Z" fill="#141414"/>
+      ${[-1, 1].map(k => `<ellipse cx="${cx + k * 16}" cy="${hCy - 5}" rx="8" ry="5" fill="#fff"/><circle cx="${cx + k * 16}" cy="${hCy - 5}" r="3.2" fill="#2b1a0e"/>`).join('')}`;
   else [-1, 1].forEach(k => {
-    const ex = cx + k * 15, ey = hCy - 4;
-    headDeco += `<circle cx="${ex}" cy="${ey}" r="8.5" fill="#fff" stroke="${INK}" stroke-width="2.5"/><circle cx="${ex + k * .5}" cy="${ey + .5}" r="6" fill="#1b1410"/>
-      <circle cx="${ex + 2.2}" cy="${ey - 2}" r="2.4" fill="#fff"/><ellipse class="lid" cx="${ex}" cy="${ey}" rx="9.5" ry="9.5" fill="${C.fur}"/>`;
-    if (dis('apnoe')) headDeco += ink(`M${ex - 6},${ey + 10} q6,4 12,0`, 2, 'opacity=".7"');
-    if (st.mood === 'sad') headDeco += ink(`M${ex - k * 10},${ey - 15} l${k * 13},4`, 3);
-    else if (brave) headDeco += ink(`M${ex + k * 10},${ey - 15} l${-k * 14},4`, 3.5); // entschlossene Helden-Brauen
+    const ex = cx + k * 16, ey = hCy - 5;
+    face += `<ellipse cx="${ex}" cy="${ey}" rx="9.5" ry="10.5" fill="#fff"/><circle cx="${ex + k * .6}" cy="${ey + .8}" r="7.6" fill="url(#heye)"/><circle cx="${ex + k * .6}" cy="${ey + 1}" r="4" fill="#120804"/>
+      <circle cx="${ex + 2.6}" cy="${ey - 2.4}" r="2.6" fill="#fff"/><circle cx="${ex - 2}" cy="${ey + 3.4}" r="1.1" fill="#fff" opacity=".8"/>
+      <path d="M${ex - 9.5},${ey - 4} Q${ex},${ey - 13.5} ${ex + 9.5},${ey - 4}" fill="none" stroke="#3a2412" stroke-width="2.2" stroke-linecap="round"/>
+      <ellipse class="lid" cx="${ex}" cy="${ey}" rx="10.5" ry="11.5" fill="${k < 0 ? DARK : FUR}"/>`;
+    if (dis('apnoe')) face += `<path d="M${ex - 6},${ey + 12} q6,4 12,0" stroke="#7a4a2a" stroke-width="2" fill="none" opacity=".6"/>`;
+    if (st.mood === 'sad') face += `<path d="M${ex - k * 10},${ey - 16} l${k * 13},4" stroke="#3a2412" stroke-width="2.6" stroke-linecap="round"/>`;
+    else if (brave) face += `<path d="M${ex + k * 10},${ey - 16} l${-k * 14},4" stroke="#3a2412" stroke-width="3" stroke-linecap="round"/>`;
   });
-  if (eq.eyes === 'shades' && !dead) headDeco += `<rect x="${cx - 27}" y="${hCy - 13}" width="23" height="15" rx="5" fill="#111"/><rect x="${cx + 4}" y="${hCy - 13}" width="23" height="15" rx="5" fill="#111"/>
-    ${ink(`M${cx - 4},${hCy - 8}h8M${cx - 27},${hCy - 10}l-10,-3M${cx + 27},${hCy - 10}l10,-3`, 3)}<path d="M${cx - 23},${hCy - 10}l6,6M${cx + 8},${hCy - 10}l6,6" stroke="#fff" stroke-width="1.8" opacity=".6"/>`;
-  if (eq.eyes === 'deal' && !dead) { // Pixel-Brille
-    let px = ''; const P = 4.2, rows = ['11111111111111', '01111110111111', '00111100011110'];
-    rows.forEach((r, y) => [...r].forEach((c, x) => { if (c === '1') px += `<rect x="${cx - 29 + x * P}" y="${hCy - 12 + y * P}" width="${P}" height="${P}" fill="#111"/>`; }));
-    px += `<rect x="${cx - 25}" y="${hCy - 12 + P}" width="${P}" height="${P}" fill="#fff"/><rect x="${cx + 4}" y="${hCy - 12 + P}" width="${P}" height="${P}" fill="#fff"/>`;
-    headDeco += px;
+  if (eq.eyes === 'shades' && !dead) face += `<rect x="${cx - 29}" y="${hCy - 14}" width="25" height="16" rx="6" fill="url(#hglass)"/><rect x="${cx + 4}" y="${hCy - 14}" width="25" height="16" rx="6" fill="url(#hglass)"/>
+    <path d="M${cx - 4},${hCy - 9}h8M${cx - 29},${hCy - 11}l-10,-3M${cx + 29},${hCy - 11}l10,-3" stroke="#111" stroke-width="3"/><path d="M${cx - 24},${hCy - 11}l7,7M${cx + 9},${hCy - 11}l7,7" stroke="#fff" stroke-width="2" opacity=".5"/>`;
+  if (eq.eyes === 'deal' && !dead) {
+    const P = 4.4; let px = '';
+    ['11111111111111', '01111110111111', '00111100011110'].forEach((r, y) => [...r].forEach((c, x) => { if (c === '1') px += `<rect x="${cx - 31 + x * P}" y="${hCy - 13 + y * P}" width="${P}" height="${P}" fill="#111"/>`; }));
+    face += px + `<rect x="${cx - 26.6}" y="${hCy - 13 + P}" width="${P}" height="${P}" fill="#fff"/><rect x="${cx + 4}" y="${hCy - 13 + P}" width="${P}" height="${P}" fill="#fff"/>`;
   }
   // Nase, Mund, Zähne, Schnurrhaare
-  headDeco += `<ellipse cx="${cx}" cy="${hCy + 6}" rx="5.5" ry="4" fill="#ff6b7a" stroke="${INK}" stroke-width="2"/>`;
+  face += `<path d="M${cx - 8},${hCy + 5} Q${cx},${hCy + 1} ${cx + 8},${hCy + 5} Q${cx + 6},${hCy + 13} ${cx},${hCy + 14} Q${cx - 6},${hCy + 13} ${cx - 8},${hCy + 5}Z" fill="url(#hnose)"/><ellipse cx="${cx - 2.5}" cy="${hCy + 5.5}" rx="2.6" ry="1.5" fill="#fff" opacity=".7"/>`;
   const happy = st.mood === 'happy' || pose === 'lift';
-  headDeco += ink(`M${cx},${hCy + 10}v4`, 2) +
-    `<rect x="${cx - 5}" y="${hCy + 14}" width="10" height="8" rx="1.5" fill="#fff" stroke="${INK}" stroke-width="1.8"/>` +
-    (eq.face === 'goldtooth' && !dead ? `<rect x="${cx}" y="${hCy + 14}" width="5" height="8" rx="1.2" fill="#ffd23f" stroke="${INK}" stroke-width="1.8"/>` : '') + ink(`M${cx},${hCy + 14}v8`, 1.5) +
-    ink(happy ? `M${cx - 9},${hCy + 13} q9,7 18,0` : `M${cx - 9},${hCy + 18} q9,-6 18,0`, 2.4) +
-    `<g stroke="${INK}" stroke-width="1.4" opacity=".7" stroke-linecap="round"><path d="M${cx - 18},${hCy + 9}l-24,-6M${cx - 18},${hCy + 12}l-25,1M${cx - 18},${hCy + 15}l-23,7M${cx + 18},${hCy + 9}l24,-6M${cx + 18},${hCy + 12}l25,1M${cx + 18},${hCy + 15}l23,7"/></g>`;
-  if (eq.face === 'stache' && !dead) headDeco += `<path d="M${cx},${hCy + 11} q-10,-6 -18,0 q-6,4 -10,-2 q2,10 12,8 q10,0 16,-6 q6,6 16,6 q10,2 12,-8 q-4,6 -10,2 q-8,-6 -18,0Z" fill="#5a3418" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>`;
+  face += `<path d="M${cx},${hCy + 14} v3" stroke="#6b3a24" stroke-width="1.6"/>`;
+  face += happy
+    ? `<path d="M${cx - 8},${hCy + 17} Q${cx},${hCy + 27} ${cx + 8},${hCy + 17} Q${cx},${hCy + 20} ${cx - 8},${hCy + 17}Z" fill="#a5463c"/><rect x="${cx - 4.5}" y="${hCy + 17.5}" width="9" height="6" rx="1.5" fill="#fff"/>`
+    : `<path d="M${cx - 8},${hCy + 22} Q${cx},${hCy + 16} ${cx + 8},${hCy + 22}" fill="none" stroke="#6b3a24" stroke-width="2" stroke-linecap="round"/><rect x="${cx - 4.5}" y="${hCy + 17}" width="9" height="5" rx="1.5" fill="#fff"/>`;
+  if (eq.face === 'goldtooth' && !dead) face += `<rect x="${cx}" y="${hCy + 17.5}" width="4.5" height="6" rx="1.2" fill="url(#hgold)"/>`;
+  face += `<path d="M${cx},${hCy + 17.5}v6" stroke="#ddd" stroke-width=".8"/>`;
+  face += `<g class="whisk" stroke="#cfc6ba" stroke-width="1.1" stroke-linecap="round" opacity=".9"><path d="M${cx - 14},${hCy + 9}l-30,-7M${cx - 14},${hCy + 12}l-32,1M${cx - 14},${hCy + 15}l-29,8M${cx + 14},${hCy + 9}l30,-7M${cx + 14},${hCy + 12}l32,1M${cx + 14},${hCy + 15}l29,8"/></g>`;
+  if (eq.face === 'stache' && !dead) face += `<path d="M${cx},${hCy + 13} q-10,-6 -18,0 q-6,4 -10,-2 q2,10 12,8 q10,0 16,-6 q6,6 16,6 q10,2 12,-8 q-4,6 -10,2 q-8,-6 -18,0Z" fill="#4a2c16"/>`;
   // Pickel
   if (!dead) PIMPLE_POS.slice(0, st.pimples).forEach(([dx, dy, w]) => {
     const x = cx + dx, y = (w === 'h' ? hCy : bCy) + dy;
-    headDeco += `<circle cx="${x}" cy="${y}" r="3.4" fill="#ff2e45" stroke="${INK}" stroke-width="1.2"/><circle cx="${x - .8}" cy="${y - .8}" r="1.1" fill="#fff6d6"/>`;
+    face += `<circle cx="${x}" cy="${y}" r="3.6" fill="url(#hpimple)"/><circle cx="${x - .9}" cy="${y - .9}" r="1.1" fill="#fff6d6"/>`;
   });
-  // Kopfbedeckung & Accessoires
-  if (eq.ears === 'phones') headDeco += `<path d="M${cx - hR + 2},${hCy - 6} Q${cx},${hCy - hR - 30} ${cx + hR - 2},${hCy - 6}" fill="none" stroke="${INK}" stroke-width="8"/><path d="M${cx - hR + 2},${hCy - 6} Q${cx},${hCy - hR - 30} ${cx + hR - 2},${hCy - 6}" fill="none" stroke="#333" stroke-width="4"/>
-    ${[-1, 1].map(k => `<rect x="${cx + k * hR - 7}" y="${hCy - 14}" width="14" height="23" rx="5" fill="#222" stroke="${INK}" stroke-width="2.5"/><rect x="${cx + k * (hR + 3) - 2}" y="${hCy - 9}" width="4" height="13" rx="2" fill="#d4ff3a"/>`).join('')}`;
-  if (eq.head === 'headband') headDeco += `<path d="M${cx - hR + 3},${hCy - 18} Q${cx},${hCy - 32} ${cx + hR - 3},${hCy - 18}" fill="none" stroke="${INK}" stroke-width="12"/><path d="M${cx - hR + 3},${hCy - 18} Q${cx},${hCy - 32} ${cx + hR - 3},${hCy - 18}" fill="none" stroke="#ff3b30" stroke-width="7"/>
-    <path d="M${cx + hR - 6},${hCy - 18} l14,8 l-2,-10 l12,4" fill="none" stroke="#ff3b30" stroke-width="5" stroke-linejoin="round"/>`;
-  if (eq.head === 'cap') headDeco += `<path d="M${cx - hR + 3},${hCy - 16} Q${cx - 2},${hCy - hR - 26} ${cx + hR - 3},${hCy - 16}Z" fill="#1d1d1b" stroke="${INK}" stroke-width="3"/>
-    <path d="M${cx + 4},${hCy - 16} q30,-4 48,6 q-22,2 -48,0Z" fill="#d4ff3a" stroke="${INK}" stroke-width="2.5"/><circle cx="${cx}" cy="${hCy - hR - 3}" r="3.5" fill="#d4ff3a" stroke="${INK}" stroke-width="1.5"/>`;
-  if (eq.head === 'beanie') headDeco += `<path d="M${cx - hR + 2},${hCy - 12} Q${cx},${hCy - hR - 30} ${cx + hR - 2},${hCy - 12}Z" fill="#e0334a" stroke="${INK}" stroke-width="3"/><rect x="${cx - hR + 1}" y="${hCy - 20}" width="${hR * 2 - 2}" height="11" rx="4" fill="#b81f35" stroke="${INK}" stroke-width="2.5"/>
-    <circle cx="${cx}" cy="${hCy - hR - 10}" r="8" fill="#fff" stroke="${INK}" stroke-width="2.5"/>${[-20, -10, 0, 10, 20].map(d => `<path d="M${cx + d},${hCy - 20} v-14" stroke="#b81f35" stroke-width="2"/>`).join('')}`;
-  if (eq.head === 'party') headDeco += `<g transform="rotate(14 ${cx} ${hCy - hR})"><path d="M${cx - 16},${hCy - hR + 6} L${cx},${hCy - hR - 40} L${cx + 16},${hCy - hR + 6}Z" fill="#7a5cff" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M${cx - 10},${hCy - hR - 8} l18,-8 M${cx - 6},${hCy - hR - 22} l12,-6" stroke="#ffe45c" stroke-width="4"/><circle cx="${cx}" cy="${hCy - hR - 42}" r="6" fill="#ff3ea5" stroke="${INK}" stroke-width="2.5"/></g>`;
-  if (eq.head === 'crown') headDeco += `<path d="M${cx - 22},${hCy - hR + 8} l0,-22 l11,12 l11,-18 l11,18 l11,-12 l0,22Z" fill="#ffd23f" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/><circle cx="${cx}" cy="${hCy - hR - 2}" r="3.5" fill="#ff3b30" stroke="${INK}" stroke-width="1.5"/>`;
-  if (eq.neck === 'chain') headDeco += `<path d="M${cx - 22},${hCy + hR - 8} Q${cx},${hCy + hR + 16} ${cx + 22},${hCy + hR - 8}" fill="none" stroke="${INK}" stroke-width="6"/><path d="M${cx - 22},${hCy + hR - 8} Q${cx},${hCy + hR + 16} ${cx + 22},${hCy + hR - 8}" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="4 2"/>
-    <circle cx="${cx}" cy="${hCy + hR + 9}" r="7" fill="#ffd23f" stroke="${INK}" stroke-width="2.5"/><text x="${cx}" y="${hCy + hR + 12.5}" text-anchor="middle" font-family="Bangers,sans-serif" font-size="9" fill="#111">$</text>`;
+  // Kopfbedeckung & Hals
+  if (eq.ears === 'phones') face += `<path d="M${cx - hR + 2},${hCy - 6} Q${cx},${hCy - hR - 32} ${cx + hR - 2},${hCy - 6}" fill="none" stroke="#2a2a2e" stroke-width="6" stroke-linecap="round"/>
+    ${[-1, 1].map(k => `<rect x="${cx + k * hR - 8}" y="${hCy - 16}" width="16" height="25" rx="7" fill="url(#hphones)"/><rect x="${cx + k * (hR + 4) - 2}" y="${hCy - 10}" width="4" height="13" rx="2" fill="#d4ff3a"/>`).join('')}`;
+  if (eq.head === 'headband') face += `<path d="M${cx - hR + 3},${hCy - 20} Q${cx},${hCy - 36} ${cx + hR - 3},${hCy - 20}" fill="none" stroke="url(#hred)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M${cx + hR - 6},${hCy - 20} l14,8 l-2,-10 l12,4" fill="none" stroke="#e02a20" stroke-width="5" stroke-linejoin="round"/>`;
+  if (eq.head === 'cap') face += `<path d="M${cx - hR + 3},${hCy - 18} Q${cx - 2},${hCy - hR - 28} ${cx + hR - 3},${hCy - 18}Z" fill="url(#hcap)"/>
+    <path d="M${cx + 4},${hCy - 18} q30,-4 50,6 q-22,3 -50,0Z" fill="#c7f02e"/><circle cx="${cx}" cy="${hCy - hR - 4}" r="3.5" fill="#c7f02e"/>`;
+  if (eq.head === 'beanie') face += `<path d="M${cx - hR + 2},${hCy - 14} Q${cx},${hCy - hR - 32} ${cx + hR - 2},${hCy - 14}Z" fill="url(#hred)"/><rect x="${cx - hR + 1}" y="${hCy - 22}" width="${hR * 2 - 2}" height="12" rx="5" fill="#a81d2d"/>
+    <circle cx="${cx}" cy="${hCy - hR - 12}" r="9" fill="url(#hw)"/>${[-22, -11, 0, 11, 22].map(d => `<path d="M${cx + d},${hCy - 22} v-14" stroke="#a81d2d" stroke-width="2" opacity=".6"/>`).join('')}`;
+  if (eq.head === 'party') face += `<g transform="rotate(14 ${cx} ${hCy - hR})"><path d="M${cx - 17},${hCy - hR + 6} L${cx},${hCy - hR - 42} L${cx + 17},${hCy - hR + 6}Z" fill="url(#hparty)"/>
+    <path d="M${cx - 11},${hCy - hR - 8} l20,-8 M${cx - 6},${hCy - hR - 22} l13,-6" stroke="#ffe45c" stroke-width="4"/><circle cx="${cx}" cy="${hCy - hR - 44}" r="6.5" fill="#ff3ea5"/></g>`;
+  if (eq.head === 'crown') face += `<path d="M${cx - 24},${hCy - hR + 8} l0,-24 l12,13 l12,-20 l12,20 l12,-13 l0,24Z" fill="url(#hgold)"/><circle cx="${cx}" cy="${hCy - hR - 4}" r="4" fill="#e0234a"/><circle cx="${cx - 14}" cy="${hCy - hR + 1}" r="2.6" fill="#3a8bff"/><circle cx="${cx + 14}" cy="${hCy - hR + 1}" r="2.6" fill="#3a8bff"/>`;
+  if (eq.neck === 'chain') face += `<path d="M${cx - 24},${hCy + hR - 8} Q${cx},${hCy + hR + 18} ${cx + 24},${hCy + hR - 8}" fill="none" stroke="url(#hgold)" stroke-width="4" stroke-dasharray="5 2"/>
+    <circle cx="${cx}" cy="${hCy + hR + 10}" r="8" fill="url(#hgold)"/><text x="${cx}" y="${hCy + hR + 14}" text-anchor="middle" font-family="Barlow,sans-serif" font-weight="800" font-size="10" fill="#7a5a00">$</text>`;
 
   // ---------- Effekte ----------
-  if (!dead && (dis('breath') || pose === 'lift')) fx += `<path class="sweat" d="M${cx + hR - 4},${hCy - 20} q5,8 0,12 q-5,-4 0,-12z" fill="#7cc4ff" stroke="${INK}" stroke-width="1.5"/>
-    <path class="sweat" style="animation-delay:.8s" d="M${cx - hR + 2},${hCy - 8} q4,7 0,10 q-4,-3 0,-10z" fill="#7cc4ff" stroke="${INK}" stroke-width="1.5"/>`;
-  if (!dead && hy < .3) fx += `<g stroke="#7bb32e" stroke-width="3" fill="none" stroke-linecap="round"><path class="stink" d="M${cx - bRx - 6},${bCy - 30} q-6,-8 0,-16 q6,-8 0,-16"/><path class="stink" style="animation-delay:.7s" d="M${cx + bRx + 6},${bCy - 24} q6,-8 0,-16 q-6,-8 0,-16"/></g>`;
-  if (!dead && hy < .18) [[cx - 50, hCy - 30, '1.3s'], [cx + 46, bCy - 40, '1.7s']].forEach(([x, y, d]) =>
-    fx += `<g><animateTransform attributeName="transform" type="rotate" from="0 ${x} ${y}" to="360 ${x} ${y}" dur="${d}" repeatCount="indefinite"/><circle cx="${x + 12}" cy="${y}" r="2.8" fill="#111"/><ellipse cx="${x + 11}" cy="${y - 3}" rx="2.6" ry="1.6" fill="#cde" stroke="#111" stroke-width=".8"/></g>`);
-  if (!dead && hy > .75) [[cx - 46, hCy - 36], [cx + 50, hCy - 10], [cx + 40, bCy + 20]].forEach(([x, y], i) =>
-    fx += `<path class="sparkle" style="animation-delay:${i * .6}s" d="M${x},${y - 7} L${x + 1.8},${y - 1.8} L${x + 7},${y} L${x + 1.8},${y + 1.8} L${x},${y + 7} L${x - 1.8},${y + 1.8} L${x - 7},${y} L${x - 1.8},${y - 1.8}Z" fill="#fff" stroke="${INK}" stroke-width="1.2"/>`);
-  if (dead) fx += `<ellipse class="halo" cx="${cx}" cy="${hCy - hR - 14}" rx="22" ry="6" fill="none" stroke="${INK}" stroke-width="7"/><ellipse class="halo" cx="${cx}" cy="${hCy - hR - 14}" rx="22" ry="6" fill="none" stroke="#ffe45c" stroke-width="3.5"/>`;
+  if (!dead && (dis('breath') || pose === 'lift')) fx += `<path class="sweat" d="M${cx + hR - 4},${hCy - 22} q5,8 0,12 q-5,-4 0,-12z" fill="url(#hdrop)"/><path class="sweat" style="animation-delay:.8s" d="M${cx - hR + 2},${hCy - 10} q4,7 0,10 q-4,-3 0,-10z" fill="url(#hdrop)"/>`;
+  if (!dead && hy < .3) fx += `<g stroke="#8dbb43" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"><path class="stink" d="M${cx - bRx - 8},${bCy - 30} q-6,-8 0,-16 q6,-8 0,-16"/><path class="stink" style="animation-delay:.7s" d="M${cx + bRx + 8},${bCy - 24} q6,-8 0,-16 q-6,-8 0,-16"/></g>`;
+  if (!dead && hy < .18) [[cx - 52, hCy - 30, '1.3s'], [cx + 48, bCy - 40, '1.7s']].forEach(([x, y, d]) =>
+    fx += `<g><animateTransform attributeName="transform" type="rotate" from="0 ${x} ${y}" to="360 ${x} ${y}" dur="${d}" repeatCount="indefinite"/><circle cx="${x + 12}" cy="${y}" r="2.8" fill="#1a1a1a"/><ellipse cx="${x + 11}" cy="${y - 3}" rx="2.8" ry="1.6" fill="#dbe8f0" opacity=".8"/></g>`);
+  if (!dead && hy > .75) [[cx - 48, hCy - 38], [cx + 52, hCy - 12], [cx + 42, bCy + 18]].forEach(([x, y], i) =>
+    fx += `<path class="sparkle" style="animation-delay:${i * .6}s" d="M${x},${y - 7} L${x + 1.8},${y - 1.8} L${x + 7},${y} L${x + 1.8},${y + 1.8} L${x},${y + 7} L${x - 1.8},${y + 1.8} L${x - 7},${y} L${x - 1.8},${y - 1.8}Z" fill="#fff"/>`);
+  if (dead) fx += `<ellipse class="halo" cx="${cx}" cy="${hCy - hR - 16}" rx="24" ry="6.5" fill="none" stroke="url(#hgold)" stroke-width="4" filter="url(#hglow)"/>`;
 
-  const cls = dead || pose === 'lift' ? '' : (dis('breath') ? 'pant' : 'breath');
-  const armsSvg = out(L.arms) + armDeco;
-  const armsWrapped = pose === 'lift' && !dead ? `<g class="lift">${armsSvg}</g>` : armsSvg;
-  return `<g class="${cls}" ${dead ? 'opacity=".92"' : ''}>${back}${out(L.body)}${bodyDeco}${armsWrapped}${out(L.head)}${headDeco}${fx}</g>`;
+  const breath = dead ? '' : pose === 'lift' ? 'squat' : (dis('breath') ? 'pant' : 'breath');
+  const armsLayer = pose === 'flex' || pose === 'lift' ? arms : '';
+  const armsFront = pose === 'flex' || pose === 'lift' ? '' : arms;
+  return `<g ${dead ? 'filter="url(#hgray)" opacity=".9"' : ''}><g class="${dead ? '' : 'sway'}">${back}<g class="${breath}">${body}${armsLayer}${armsFront}
+    <g class="${dead ? '' : 'tilt'}">${head}${face}</g></g>${fx}</g></g>`;
 }
 
 // =====================================================================
-//  Comic-Szene draußen mit aktuellem Wetter
+//  Umgebung (gleicher weicher 3D-Look)
 // =====================================================================
-const ACTION_WORDS = ['PUMP!', 'BÄM!', 'WUMMS!', 'GAINS!', 'POWER!', 'ZACK!'];
-function sceneSVG(st, pose = 'idle', opts = {}) {
-  const w = weather(), night = !w.isDay, snowy = w.kind === 'snow';
-  const O = (x) => `stroke="${INK}" stroke-width="${x}" stroke-linejoin="round"`;
-  let s = `<rect width="360" height="250" fill="url(#${night ? 'g-night' : 'g-' + w.kind})"/>
-    <rect width="360" height="250" fill="url(#${night ? 'dotsW' : 'dotsSky'})" opacity="${night ? .1 : .18}"/>`;
-  // Heldenhafte Strahlen hinter dem Hamster
-  if (!night && ['clear', 'partly'].includes(w.kind) || pose === 'lift')
-    s += `<g class="rays" fill="#fff" opacity="${night ? .06 : .14}">${Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8, b = a + Math.PI / 16;
-      return `<path d="M180,175 L${180 + 420 * Math.cos(a)},${175 + 420 * Math.sin(a)} L${180 + 420 * Math.cos(b)},${175 + 420 * Math.sin(b)}Z"/>`; }).join('')}</g>`;
-  if (night) [[30, 20], [80, 44], [140, 16], [210, 36], [250, 14], [330, 60], [300, 24], [110, 70], [175, 60]].forEach(([x, y], i) =>
-    s += `<path d="M${x},${y - 4} l1.2,2.8 l2.8,1.2 l-2.8,1.2 l-1.2,2.8 l-1.2,-2.8 l-2.8,-1.2 l2.8,-1.2Z" fill="#fff" opacity="${.6 + (i % 3) * .15}"/>`);
-  if (!night && (w.kind === 'clear' || w.kind === 'partly')) s += `<circle cx="304" cy="46" r="38" fill="#fff6a8" opacity=".35"/><circle cx="304" cy="46" r="24" fill="#ffd23f" ${O(3.5)}/><circle cx="304" cy="46" r="24" fill="url(#dots)" opacity=".15"/>
-    <path d="M292,38 q6,-8 14,-6" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/>`;
-  if (night && !['rain', 'storm', 'cloudy'].includes(w.kind)) s += `<path d="M300,24 a22,22 0 1,0 22,30 a17,17 0 1,1 -22,-30Z" fill="#fff4c2" ${O(3)}/>`;
-  // Stadt-Silhouette (Comic-Kulisse)
-  const bc = night ? '#1c1f45' : snowy ? '#a8b6c8' : w.kind === 'rain' || w.kind === 'storm' ? '#4c566a' : '#6f8fc4';
-  [[150, 92, 26], [178, 70, 22], [202, 104, 30], [234, 80, 20], [256, 112, 34], [292, 88, 24], [318, 100, 30], [350, 76, 22]].forEach(([x, h, wd], i) => {
-    s += `<rect x="${x - wd / 2}" y="${175 - h}" width="${wd}" height="${h}" fill="${bc}" ${O(2.5)}/>`;
-    if (night) for (let r = 0; r < Math.floor(h / 16); r++) for (let c = 0; c < 2; c++) if ((r + c + i) % 3) s += `<rect x="${x - wd / 2 + 5 + c * (wd / 2 - 2)}" y="${175 - h + 6 + r * 16}" width="5" height="7" fill="#ffd23f"/>`;
-  });
-  // Wolken mit Tusche-Umriss
-  const nC = { clear: 1, partly: 2, cloudy: 4, fog: 3, rain: 4, snow: 3, storm: 5 }[w.kind];
-  const cc = ['rain', 'storm'].includes(w.kind) ? '#8892a0' : night ? '#4a4f80' : '#fff';
-  [[48, 40, 1], [190, 28, .8], [120, 70, .7], [270, 74, .9], [330, 32, .6]].slice(0, nC).forEach(([x, y, k], i) => {
-    const parts = [[x, y, 30 * k, 12 * k], [x - 14 * k, y - 7 * k, 16 * k, 12 * k], [x + 10 * k, y - 10 * k, 18 * k, 14 * k]];
-    s += `<g class="cloud" style="animation-delay:-${i * 9}s">${parts.map(([a, b, rx, ry]) => `<ellipse cx="${a}" cy="${b}" rx="${rx}" ry="${ry}" fill="${INK}" stroke="${INK}" stroke-width="6"/>`).join('')}
-      ${parts.map(([a, b, rx, ry]) => `<ellipse cx="${a}" cy="${b}" rx="${rx}" ry="${ry}" fill="${cc}"/>`).join('')}</g>`;
-  });
-  // Hügel, Baum, Boden
-  const g1 = snowy ? '#dfe7ee' : night ? '#1f4a2e' : '#3fae4a', g2 = snowy ? '#f4f7fa' : night ? '#2a5d37' : '#5ccc55';
-  const leaf = night ? '#1b4a26' : '#2e9a3c', leaf2 = night ? '#22572d' : '#41b84d';
-  s += `<path d="M0,172 Q90,136 190,162 T360,152 V250 H0Z" fill="${g1}" ${O(3)}/>
-    <rect x="44" y="120" width="11" height="62" rx="3" fill="#7a4a22" ${O(3)}/>
-    <circle cx="30" cy="124" r="20" fill="${leaf}" ${O(3)}/><circle cx="70" cy="122" r="20" fill="${leaf2}" ${O(3)}/><circle cx="49" cy="106" r="30" fill="${leaf2}" ${O(3)}/>
-    <path d="M36,92 q10,-10 22,-8" stroke="#fff" stroke-width="3" fill="none" opacity=".5" stroke-linecap="round"/>
-    ${snowy ? `<path d="M22,100 q27,-30 56,0 q-10,-8 -28,-8 q-18,0 -28,8z" fill="#fff" ${O(2)}/>` : ''}
-    <path d="M0,198 Q120,178 240,194 T360,188 V250 H0Z" fill="${g2}" ${O(3)}/>
-    <path d="M0,198 Q120,178 240,194 T360,188 V250 H0Z" fill="url(#dots)" opacity=".1"/>
-    <g transform="translate(300,208)"><rect x="-16" y="-2.5" width="32" height="5" fill="#777" ${O(2)}/><rect x="-24" y="-10" width="8" height="20" rx="2" fill="#333" ${O(2)}/><rect x="16" y="-10" width="8" height="20" rx="2" fill="#333" ${O(2)}/></g>`;
-  if (!snowy) [[110, 216], [200, 230], [250, 212], [20, 232]].forEach(([x, y]) => s += `<path d="M${x},${y} l3,-9 l3,9 M${x + 5},${y} l3,-7 l2,7" stroke="${INK}" stroke-width="2" fill="none"/>`);
-  // Hamster
-  const sc = opts.scale || .9;
-  s += `<g transform="translate(${180 - 120 * sc},${244 - 222 * sc}) scale(${sc})">${hamSVG(st, pose)}</g>`;
-  // Comic-Lautwort beim Training
-  if (pose === 'lift') {
-    const word = opts.word || pick(ACTION_WORDS), bx = 66, by = 62;
-    const star = Array.from({ length: 24 }, (_, i) => { const r = i % 2 ? 26 : 44, a = i * Math.PI / 12; return `${bx + r * Math.cos(a) * 1.25},${by + r * Math.sin(a) * .8}`; }).join(' ');
-    s += `<g class="pop"><polygon points="${star}" fill="#ffe45c" ${O(3)}/><text x="${bx}" y="${by + 7}" text-anchor="middle" font-family="Bangers,Impact,sans-serif" font-size="22" fill="#e8262b" stroke="${INK}" stroke-width="1.2" letter-spacing="1">${word}</text></g>`;
+// Jedes Teil wird mit Unterkante-Mitte bei (0,0) gezeichnet; w/h für die Vorschau im Shop
+const ENV = {
+  box: { w: 110, h: 86, d: n => `<ellipse cx="0" cy="0" rx="58" ry="7" fill="url(#hshadow)"/>
+    <path d="M-50,0 L-50,-62 L44,-66 L48,0Z" fill="url(#ebox)"/><path d="M-50,-62 L-38,-82 L52,-84 L44,-66Z" fill="#d9ae72"/><path d="M44,-66 L52,-84 L56,-4 L48,0Z" fill="#a8783f"/>
+    <path d="M-50,-62 L-72,-50 L-62,-40 L-50,-52" fill="#c99a5e"/><path d="M-14,0 L-14,-30 Q-2,-44 10,-30 L10,0Z" fill="#3b2a18"/>
+    <rect x="-46" y="-40" width="26" height="7" fill="#e8d6a8" opacity=".85" transform="rotate(-8 -33 -36)"/><rect x="18" y="-56" width="22" height="6" fill="#e8d6a8" opacity=".85" transform="rotate(14 29 -53)"/>
+    <path d="M24,-30 l10,4 M22,-22 l14,0" stroke="#6b4a24" stroke-width="2"/><path d="M-30,-20 q6,-6 12,0" stroke="#7a5228" stroke-width="2" fill="none"/>` },
+  hut: { w: 120, h: 104, d: n => `<ellipse cx="0" cy="0" rx="62" ry="7" fill="url(#hshadow)"/>
+    <rect x="-48" y="-62" width="96" height="62" fill="url(#ewood)"/>${[-50, -38, -26, -14].map(y => `<path d="M-48,${y} H48" stroke="#6b4320" stroke-width="1.5" opacity=".5"/>`).join('')}
+    <path d="M-60,-58 L0,-102 L60,-58Z" fill="url(#eroof)"/><rect x="-12" y="-36" width="24" height="36" rx="3" fill="#4a2c14"/><circle cx="7" cy="-18" r="2" fill="#e8c060"/>
+    <rect x="22" y="-50" width="18" height="16" rx="2" fill="${n ? '#ffd86b' : '#9fd4ff'}"/><path d="M31,-50 v16 M22,-42 h18" stroke="#6b4320" stroke-width="2"/>` },
+  house: { w: 140, h: 124, d: n => `<ellipse cx="0" cy="0" rx="72" ry="8" fill="url(#hshadow)"/>
+    <rect x="-56" y="-72" width="112" height="72" rx="4" fill="url(#ewall)"/><path d="M-68,-68 L0,-122 L68,-68Z" fill="url(#eroofRed)"/><rect x="30" y="-118" width="14" height="30" fill="#9a4a3a"/>
+    <rect x="-14" y="-42" width="28" height="42" rx="12" fill="url(#ewood)"/><circle cx="8" cy="-20" r="2.2" fill="#ffd23f"/>
+    ${[-40, 22].map(x => `<rect x="${x}" y="-60" width="22" height="20" rx="3" fill="${n ? '#ffd86b' : '#a9dcff'}"/><path d="M${x + 11},-60 v20 M${x},-50 h22" stroke="#fff" stroke-width="2.5"/>`).join('')}
+    <ellipse cx="-44" cy="-4" rx="14" ry="9" fill="#3f9a45"/><ellipse cx="44" cy="-4" rx="14" ry="9" fill="#3f9a45"/><circle cx="-48" cy="-8" r="2.4" fill="#ff7ab0"/><circle cx="42" cy="-10" r="2.4" fill="#ffd23f"/>` },
+  villa: { w: 200, h: 120, d: n => `<ellipse cx="0" cy="0" rx="104" ry="9" fill="url(#hshadow)"/>
+    <rect x="-96" y="-70" width="120" height="70" fill="url(#ewall)"/><rect x="-30" y="-116" width="124" height="116" fill="url(#ewall2)"/>
+    <rect x="-100" y="-74" width="128" height="6" fill="#d9d4cc"/><rect x="-34" y="-120" width="132" height="6" fill="#d9d4cc"/>
+    ${[-86, -56].map(x => `<rect x="${x}" y="-58" width="24" height="40" rx="2" fill="${n ? '#ffd86b' : 'url(#eglass)'}"/>`).join('')}
+    ${[-20, 18, 56].map(x => `<rect x="${x}" y="-104" width="30" height="40" rx="2" fill="${n ? '#ffd86b' : 'url(#eglass)'}"/>`).join('')}
+    <rect x="10" y="-52" width="50" height="52" fill="${n ? '#ffcf5a' : 'url(#eglass)'}"/><path d="M35,-52 V0" stroke="#e9e5de" stroke-width="3"/>
+    ${[-14, 74].map(x => `<rect x="${x}" y="-60" width="7" height="60" fill="#f3efe8"/>`).join('')}
+    <ellipse cx="-78" cy="-6" rx="12" ry="16" fill="#2f8a3a"/><rect x="-80" y="-4" width="4" height="6" fill="#6b4320"/><ellipse cx="86" cy="-6" rx="12" ry="16" fill="#2f8a3a"/>` },
+  crate: { w: 96, h: 48, d: n => `<ellipse cx="0" cy="0" rx="48" ry="5" fill="url(#hshadow)"/>
+    <rect x="-44" y="-30" width="44" height="30" rx="3" fill="url(#ecrate)"/>${[-36, -26, -16, -6].map(x => `<rect x="${x}" y="-36" width="6" height="10" rx="2" fill="#5a3a1a"/>`).join('')}
+    <path d="M-44,-15 H0" stroke="#7a1414" stroke-width="2"/>
+    <g transform="rotate(-8 30 -6)"><rect x="12" y="-8" width="34" height="5" rx="2" fill="#8a6a54"/><rect x="6" y="-16" width="9" height="20" rx="3" fill="url(#erust)"/><rect x="42" y="-16" width="9" height="20" rx="3" fill="url(#erust)"/>
+    <circle cx="9" cy="-10" r="1.6" fill="#5a2a10"/><circle cx="46" cy="-4" r="1.8" fill="#5a2a10"/></g>` },
+  bench: { w: 110, h: 64, d: n => `<ellipse cx="0" cy="0" rx="54" ry="6" fill="url(#hshadow)"/>
+    <rect x="-40" y="-26" width="80" height="11" rx="5" fill="url(#epad)"/><rect x="-30" y="-15" width="6" height="15" fill="#555"/><rect x="24" y="-15" width="6" height="15" fill="#555"/>
+    <rect x="30" y="-58" width="5" height="44" fill="#666"/><rect x="-35" y="-58" width="5" height="44" fill="#666"/><rect x="-52" y="-62" width="104" height="5" rx="2" fill="url(#hsteel)"/>
+    <rect x="-56" y="-72" width="8" height="26" rx="2" fill="#2d2f33"/><rect x="48" y="-72" width="8" height="26" rx="2" fill="#2d2f33"/>` },
+  rack: { w: 120, h: 120, d: n => `<ellipse cx="0" cy="0" rx="60" ry="7" fill="url(#hshadow)"/>
+    ${[-50, 44].map(x => `<rect x="${x}" y="-116" width="7" height="116" fill="url(#hsteel)"/>`).join('')}<rect x="-52" y="-118" width="104" height="7" fill="url(#hsteel)"/>
+    <rect x="-60" y="-72" width="120" height="5" rx="2" fill="#bfc3c8"/>${[-1, 1].map(k => `<rect x="${k * 62 - 5}" y="-86" width="10" height="34" rx="3" fill="#c0392b"/><rect x="${k * 54 - 4}" y="-82" width="8" height="26" rx="2" fill="#2d2f33"/>`).join('')}
+    <rect x="-36" y="-14" width="72" height="14" rx="3" fill="#2d2f33"/>` },
+  bike: { w: 110, h: 64, d: n => `<ellipse cx="0" cy="0" rx="54" ry="5" fill="url(#hshadow)"/>
+    ${[-30, 30].map(x => `<circle cx="${x}" cy="-22" r="20" fill="none" stroke="#2a2a2e" stroke-width="5"/><circle cx="${x}" cy="-22" r="3" fill="#888"/>`).join('')}
+    <path d="M-30,-22 L-6,-22 L12,-46 L-14,-46Z M-6,-22 L-18,-52 M12,-46 L30,-22 M12,-46 L8,-56" stroke="#e33b2e" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+    <path d="M-24,-54 h14" stroke="#222" stroke-width="5" stroke-linecap="round"/><path d="M2,-58 h12" stroke="#222" stroke-width="4" stroke-linecap="round"/>` },
+  scooter: { w: 100, h: 74, d: n => `<ellipse cx="0" cy="0" rx="50" ry="5" fill="url(#hshadow)"/>
+    <rect x="-34" y="-16" width="62" height="8" rx="4" fill="#2a2a2e"/><path d="M26,-14 L34,-68" stroke="#3a3a3e" stroke-width="5" stroke-linecap="round"/><path d="M24,-70 h20" stroke="#222" stroke-width="5" stroke-linecap="round"/>
+    ${[-30, 34].map(x => `<circle cx="${x}" cy="-9" r="9" fill="#1d1d1f"/><circle cx="${x}" cy="-9" r="3" fill="#d4ff3a"/>`).join('')}<rect x="-20" y="-18" width="30" height="3" fill="#d4ff3a"/>` },
+  sportscar: { w: 170, h: 58, d: n => `<ellipse cx="0" cy="0" rx="86" ry="7" fill="url(#hshadow)"/>
+    <path d="M-80,-14 Q-82,-30 -60,-32 L-34,-34 Q-12,-54 22,-52 Q48,-50 62,-34 L76,-30 Q86,-26 84,-14 L80,-8 L-78,-8Z" fill="url(#ecar)"/>
+    <path d="M-26,-34 Q-8,-48 18,-47 Q38,-46 48,-34Z" fill="url(#eglass)"/><path d="M12,-47 L14,-34" stroke="#b5121b" stroke-width="3"/>
+    <path d="M-70,-26 Q0,-36 74,-26" stroke="#fff" stroke-width="2" opacity=".35" fill="none"/><ellipse cx="78" cy="-22" rx="5" ry="3" fill="#fff6c2"/><rect x="-82" y="-24" width="7" height="4" rx="2" fill="#ff3b3b"/>
+    ${[-50, 52].map(x => `<circle cx="${x}" cy="-10" r="13" fill="#161618"/><circle cx="${x}" cy="-10" r="8" fill="url(#hsteel)"/>${[0, 72, 144, 216, 288].map(a => `<path d="M${x},-10 l${(7 * Math.cos(a * Math.PI / 180)).toFixed(1)},${(7 * Math.sin(a * Math.PI / 180)).toFixed(1)}" stroke="#555" stroke-width="2"/>`).join('')}`).join('')}` }
+};
+// Boden-Varianten (über die ganze Szenenbreite)
+function groundSVG(id, n, snowy, W = 360, top = 196, H = 250) {
+  const g = snowy ? 'url(#gSnow)' : { trash: 'url(#gDirt)', grass: 'url(#gGrass)', garden: 'url(#gGrass)', terrace: 'url(#gMarble)' }[id] || 'url(#gGrass)';
+  let s = `<path d="M0,${top + 2} Q${W * .33},${top - 12} ${W * .66},${top} T${W},${top - 4} V${H} H0Z" fill="${g}"/>`;
+  if (n) s += `<rect y="${top - 14}" width="${W}" height="${H}" fill="#0b1030" opacity=".25"/>`;
+  if (snowy) return s;
+  if (id === 'trash') {
+    s += `<ellipse cx="${W * .74}" cy="${top + 30}" rx="26" ry="6" fill="#6f7f8a" opacity=".7"/><ellipse cx="${W * .74 - 6}" cy="${top + 29}" rx="10" ry="2" fill="#fff" opacity=".3"/>
+      <g transform="translate(${W * .16},${top + 24}) rotate(-20)"><rect x="-6" y="-9" width="12" height="18" rx="3" fill="url(#hsteel)"/><rect x="-6" y="-9" width="12" height="4" fill="#d33"/></g>
+      <path d="M${W * .58},${top + 40} q6,-10 12,-2 q-4,-8 6,-6 q-6,4 -2,10 q-8,-6 -16,-2Z" fill="#e8d34a"/>
+      <circle cx="${W * .9}" cy="${top + 18}" r="10" fill="none" stroke="#2a2a2a" stroke-width="5"/>
+      ${[[W * .04, -18, -14], [W * .09, -12, 8], [W * .95, -16, 12]].map(([x, y, r]) => `<rect x="${x}" y="${top + y}" width="7" height="34" fill="#8a6a4a" transform="rotate(${r} ${x} ${top})"/>`).join('')}
+      <path d="M${W * .3},${top + 46} l8,-4 l2,6Z" fill="#5a8ab0" opacity=".7"/>`;
   }
+  if (id === 'grass' || id === 'garden') {
+    for (let i = 0; i < 14; i++) { const x = (i * 61) % W, y = top + 14 + (i * 23) % 36; s += `<path d="M${x},${y} q2,-8 4,0 q2,-10 4,0" stroke="#2f8a3a" stroke-width="2" fill="none"/>`; }
+    for (let i = 0; i < (id === 'garden' ? 12 : 6); i++) { const x = 14 + (i * 79) % (W - 28), y = top + 18 + (i * 31) % 30, c = ['#ff7ab0', '#ffd23f', '#fff', '#b085ff'][i % 4];
+      s += `<g>${[0, 72, 144, 216, 288].map(a => `<circle cx="${(x + 3.5 * Math.cos(a * Math.PI / 180)).toFixed(1)}" cy="${(y + 3.5 * Math.sin(a * Math.PI / 180)).toFixed(1)}" r="2.6" fill="${c}"/>`).join('')}<circle cx="${x}" cy="${y}" r="2" fill="#ffb02e"/></g>`; }
+  }
+  if (id === 'garden') s += `<g opacity=".95">${Array.from({ length: 16 }, (_, i) => `<path d="M${i * 24},${top - 6} v-26 l5,-6 l5,6 v26Z" fill="#f6f2ea"/>`).join('')}<rect y="${top - 24}" width="${W}" height="4" fill="#e3ddd2"/></g>
+    ${[0, 1, 2].map(i => `<ellipse cx="${W / 2 - 30 + i * 30}" cy="${top + 44 - i * 2}" rx="12" ry="5" fill="#c9c2b6"/>`).join('')}`;
+  if (id === 'terrace') {
+    for (let i = 1; i < 8; i++) s += `<path d="M${W / 2},${top - 30} L${(i * W / 8 - W / 2) * 3 + W / 2},${H}" stroke="#cfc8bd" stroke-width="1" opacity=".7"/>`;
+    [top + 14, top + 30].forEach(y => s += `<path d="M0,${y} H${W}" stroke="#cfc8bd" stroke-width="1" opacity=".7"/>`);
+    s += `<rect x="${W * .66}" y="${top + 8}" width="${W * .3}" height="26" rx="6" fill="url(#gPool)"/><path d="M${W * .68},${top + 18} q10,-4 20,0 t20,0 t20,0 t20,0" stroke="#fff" stroke-width="1.5" fill="none" opacity=".6"/>
+      ${[W * .06, W * .58].map(x => `<rect x="${x}" y="${top + 4}" width="16" height="18" rx="3" fill="#e9e3d8"/><ellipse cx="${x + 8}" cy="${top}" rx="13" ry="14" fill="#2f8a3a"/>`).join('')}`;
+  }
+  return s;
+}
+function skySVG(id, night) {
+  if (id === 'lights') {
+    let s = `<path d="M0,22 Q90,58 180,30 T360,26" fill="none" stroke="#333" stroke-width="1.5"/>`;
+    for (let i = 0; i < 18; i++) { const t = i / 17, x = t * 360, y = t < .5 ? 22 + Math.sin(t * Math.PI * 2) * 20 + 10 * t : 30 + Math.sin(t * Math.PI * 2) * 8;
+      const c = ['#ffd23f', '#ff6b9a', '#6bd6ff', '#9cff6b'][i % 4]; s += `<circle class="twinkle" style="animation-delay:${(i % 5) * .3}s" cx="${x.toFixed(1)}" cy="${(y + 4).toFixed(1)}" r="4" fill="${c}" filter="url(#hglow)"/>`; }
+    return s;
+  }
+  if (id === 'fireworks') return [[70, 50, '#ff5a7a', 0], [250, 40, '#ffd23f', .8], [170, 70, '#6bd6ff', 1.6]].map(([x, y, c, d]) =>
+    `<g class="firework" style="animation-delay:${d}s;transform-origin:${x}px ${y}px">${Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6; return `<line x1="${x + 6 * Math.cos(a)}" y1="${y + 6 * Math.sin(a)}" x2="${x + 26 * Math.cos(a)}" y2="${y + 26 * Math.sin(a)}" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`; }).join('')}<circle cx="${x}" cy="${y}" r="4" fill="#fff"/></g>`).join('');
+  return '';
+}
+
+// Ganze Szene: Himmel (Wetter) → Hügel → Zuhause/Fahrzeug → Boden → Hamster → Trainingsgerät
+function sceneSVG(st, pose = 'idle', opts = {}) {
+  const w = weather(), night = !w.isDay, snowy = w.kind === 'snow', eq = state.equip;
+  let s = `<rect width="360" height="250" fill="url(#${night ? 'g-night' : 'g-' + w.kind})"/>`;
+  if (night) [[30, 20], [80, 44], [140, 16], [210, 36], [250, 14], [330, 60], [300, 24], [110, 70], [175, 60]].forEach(([x, y], i) => s += `<circle class="twinkle" style="animation-delay:${i * .4}s" cx="${x}" cy="${y}" r="1.4" fill="#fff"/>`);
+  if (!night && (w.kind === 'clear' || w.kind === 'partly')) s += `<circle cx="300" cy="48" r="48" fill="url(#sunGlow)"/><circle cx="300" cy="48" r="22" fill="url(#sun)"/>`;
+  if (night && !['rain', 'storm', 'cloudy'].includes(w.kind)) s += `<circle cx="300" cy="44" r="30" fill="url(#moonGlow)"/><path d="M296,26 a20,20 0 1,0 20,28 a16,16 0 1,1 -20,-28Z" fill="#fff4c2"/>`;
+  s += `<g class="par-a">${skySVG(eq.sky, night)}`;
+  const nC = { clear: 1, partly: 2, cloudy: 4, fog: 3, rain: 4, snow: 3, storm: 5 }[w.kind];
+  [[48, 40, 1], [190, 28, .8], [120, 70, .7], [270, 74, .9], [330, 32, .6]].slice(0, nC).forEach(([x, y, k], i) =>
+    s += `<g class="cloud" style="animation-delay:-${i * 9}s"><ellipse cx="${x}" cy="${y + 4 * k}" rx="${32 * k}" ry="${11 * k}" fill="url(#${['rain', 'storm'].includes(w.kind) ? 'cloudD' : 'cloud'})"/>
+      <circle cx="${x - 12 * k}" cy="${y - 3 * k}" r="${13 * k}" fill="url(#${['rain', 'storm'].includes(w.kind) ? 'cloudD' : 'cloud'})"/><circle cx="${x + 9 * k}" cy="${y - 7 * k}" r="${16 * k}" fill="url(#${['rain', 'storm'].includes(w.kind) ? 'cloudD' : 'cloud'})"/></g>`);
+  s += `</g>`;
+  // ferne Hügel & Bäume
+  s += `<g class="par-b"><path d="M-20,178 Q80,128 190,160 T380,148 V250 H-20Z" fill="url(#${snowy ? 'gSnowFar' : night ? 'gHillN' : 'gHill'})"/>
+    ${[[24, 150, 1], [318, 142, .8], [270, 156, .6]].map(([x, y, k]) => `<rect x="${x - 3 * k}" y="${y}" width="${6 * k}" height="${22 * k}" fill="#6b4320"/><circle cx="${x}" cy="${y - 6 * k}" r="${18 * k}" fill="url(#${night ? 'treeN' : 'tree'})"/>${snowy ? `<ellipse cx="${x}" cy="${y - 18 * k}" rx="${14 * k}" ry="${6 * k}" fill="#fff"/>` : ''}`).join('')}</g>`;
+  // Zuhause links, Fahrzeug rechts
+  const place = (id, x, y, sc) => id && ENV[id] ? `<g transform="translate(${x},${y}) scale(${sc})">${ENV[id].d(night)}</g>` : '';
+  s += `<g class="par-c">${place(eq.home, 64, 204, eq.home === 'villa' ? .82 : .9)}${place(eq.ride, 292, 206, eq.ride === 'sportscar' ? .78 : .85)}</g>`;
+  s += groundSVG(eq.ground, night, snowy);
+  // Hamster
+  const sc = opts.scale || .84;
+  s += `<g transform="translate(${180 - 120 * sc},${244 - 228 * sc}) scale(${sc})">${hamSVG(st, pose)}</g>`;
+  s += `<g class="par-d">${place(eq.gym, 312, 242, .62)}</g>`;
   // Sprechblase
   if (opts.say) {
-    const lines = wrapText(opts.say, 17), bw = Math.max(...lines.map(l => l.length)) * 7.6 + 22, bh = lines.length * 16 + 14, bx = 12, by = 52;
-    s += `<g><path d="M${bx + bw - 30},${by + bh - 2} L${bx + bw + 8},${by + bh + 22} L${bx + bw - 12},${by + bh - 2}Z" fill="#fff" ${O(3)}/>
-      <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="14" fill="#fff" ${O(3)}/><path d="M${bx + bw - 29},${by + bh - 1.5} L${bx + bw - 13},${by + bh - 1.5}" stroke="#fff" stroke-width="4"/>
-      ${lines.map((l, i) => `<text x="${bx + bw / 2}" y="${by + 22 + i * 16}" text-anchor="middle" font-family="Bangers,Impact,sans-serif" font-size="15" fill="#111" letter-spacing=".6">${esc(l)}</text>`).join('')}</g>`;
+    const lines = wrapText(opts.say, 18), bw = Math.max(...lines.map(l => l.length)) * 7 + 24, bh = lines.length * 15 + 14, bx = 10, by = 50;
+    s += `<g class="bubble"><path d="M${bx + bw - 34},${by + bh - 2} L${bx + bw + 4},${by + bh + 20} L${bx + bw - 16},${by + bh - 2}Z" fill="#fff"/>
+      <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="13" fill="#fff" filter="url(#hsoft)"/>
+      ${lines.map((l, i) => `<text x="${bx + bw / 2}" y="${by + 21 + i * 15}" text-anchor="middle" font-family="'Baloo 2',Barlow,sans-serif" font-weight="800" font-size="13" fill="#2a2a2a">${esc(l)}</text>`).join('')}</g>`;
   }
   // Wetter
-  if (w.kind === 'rain' || w.kind === 'storm') for (let i = 0; i < 46; i++) {
-    const x = (i * 53) % 360, d = ((i * 37) % 70) / 100;
-    s += `<line class="drop" style="animation-delay:-${d}s" x1="${x}" y1="0" x2="${x - 4}" y2="14" stroke="#dff0ff" stroke-width="2" opacity=".8"/>`;
-  }
-  if (snowy) for (let i = 0; i < 40; i++) { const x = (i * 47) % 360, d = ((i * 29) % 70) / 10; s += `<circle class="flake" style="animation-delay:-${d}s" cx="${x}" cy="0" r="${2 + (i % 3)}" fill="#fff" stroke="${INK}" stroke-width=".8"/>`; }
+  if (w.kind === 'rain' || w.kind === 'storm') for (let i = 0; i < 46; i++) { const x = (i * 53) % 360, d = ((i * 37) % 70) / 100; s += `<line class="drop" style="animation-delay:-${d}s" x1="${x}" y1="0" x2="${x - 4}" y2="13" stroke="#dff0ff" stroke-width="1.6" opacity=".7"/>`; }
+  if (snowy) for (let i = 0; i < 40; i++) { const x = (i * 47) % 360, d = ((i * 29) % 70) / 10; s += `<circle class="flake" style="animation-delay:-${d}s" cx="${x}" cy="0" r="${1.6 + (i % 3)}" fill="#fff" opacity=".95"/>`; }
   if (w.kind === 'fog') s += `<rect class="cloud" x="-40" y="120" width="440" height="40" fill="#fff" opacity=".35"/><rect class="cloud" style="animation-delay:-20s" x="-40" y="175" width="440" height="35" fill="#fff" opacity=".3"/>`;
-  if (w.kind === 'storm') s += `<g class="flash"><rect width="360" height="250" fill="#fff" opacity=".5"/><path d="M250,0 l-22,52 l14,0 l-24,58 l40,-70 l-14,0 l18,-40Z" fill="#ffe45c" ${O(3)}/></g>`;
-  const ar = opts.slice ? 'xMidYMax slice' : 'xMidYMid meet';
-  return `<svg class="scene" viewBox="0 0 360 250" preserveAspectRatio="${ar}">${s}</svg>`;
+  if (w.kind === 'storm') s += `<g class="flash"><rect width="360" height="250" fill="#fff" opacity=".45"/><path d="M250,0 l-22,52 l14,0 l-24,58 l40,-70 l-14,0 l18,-40Z" fill="#fff8c2"/></g>`;
+  if (night) s += `<rect width="360" height="250" fill="#0a1030" opacity=".12"/>`;
+  return `<svg class="scene" viewBox="0 0 360 250" preserveAspectRatio="${opts.slice ? 'xMidYMax slice' : 'xMidYMid meet'}">${s}</svg>`;
 }
 function wrapText(t, max) {
   const words = t.split(' '), lines = [''];
@@ -1060,14 +1288,25 @@ function wrapText(t, max) {
 }
 function hamSays(st) {
   if (st.dead) return null;
-  const day = Math.floor(Date.now() / DAY);
-  const pickDay = a => a[day % a.length];
+  const day = Math.floor(Date.now() / DAY), pickDay = a => a[day % a.length];
   if (st.mood === 'sad') return pickDay(['Hallo?! Ich verkümmere hier!', 'Meine Muskeln schmelzen!', 'Wo warst du so lange?!']);
   if (st.losing) return pickDay(['Ich werd wieder weich …', 'Ruhetag vorbei, Boss!', 'Mein Bizeps vermisst dich!']);
-  if (st.fat >= 70) return pickDay(['Noch ein Donut …?', 'Treppen? Nein danke.', 'Mir tut alles weh …', 'Ist das Sofa noch frei?']);
+  if (state.equip.home === 'box' && st.fat >= 60) return pickDay(['Mein Karton leckt …', 'Irgendwann eine Villa?', 'Noch ein Donut …?', 'Mir tut alles weh …']);
+  if (st.fat >= 70) return pickDay(['Noch ein Donut …?', 'Treppen? Nein danke.', 'Ist das Sofa noch frei?']);
   if (st.fat >= 45) return pickDay(['Es wird langsam!', 'Ich spür schon was!', 'Weniger Bauch, mehr Pump!']);
   if (st.muscle < 42) return pickDay(['Sixpack incoming!', 'Fühl mich so leicht!', 'Lass trainieren!']);
   return pickDay(['Spürst du den Pump?', 'Leg Day? Immer!', 'Light weight, baby!', 'Wer braucht Treppen? Ich spring!']);
+}
+
+// Vorschau-Bild für den Shop
+const PREVIEW_ST = () => ({ dead: false, fat: 42, muscle: 24, hyg: 85, pimples: 0, mood: 'happy', diseases: DISEASES.map(d => ({ ...d, active: false })) });
+function itemPreview(it) {
+  if (ENV[it.id]) { const e = ENV[it.id]; return `<svg viewBox="${-e.w / 2 - 6} ${-e.h - 8} ${e.w + 12} ${e.h + 16}">${e.d(false)}</svg>`; }
+  if (it.slot === 'ground') return `<svg viewBox="0 150 180 100" preserveAspectRatio="xMidYMid slice">${groundSVG(it.id, false, false, 180, 170, 250)}</svg>`;
+  if (it.slot === 'sky') return `<svg viewBox="0 0 360 110" preserveAspectRatio="xMidYMid slice"><rect width="360" height="110" fill="url(#g-night)"/>${skySVG(it.id, true)}</svg>`;
+  const eq = { [it.slot]: it.id };
+  const crop = ['head', 'eyes', 'face', 'ears'].includes(it.slot) ? '50 14 140 118' : ['back', 'aura'].includes(it.slot) ? '-20 -10 280 250' : '10 20 220 215';
+  return `<svg viewBox="${crop}">${hamSVG(PREVIEW_ST(), it.slot === 'gear' ? 'lift' : 'idle', eq)}</svg>`;
 }
 
 // =====================================================================
@@ -1082,24 +1321,18 @@ function logHam() {
 }
 function snapAt(daysAgo) {
   const L = (state.hamLog || []).filter(e => e.gen === ham().gen); if (!L.length) return null;
-  const target = toISO(new Date(Date.now() - daysAgo * DAY));
-  const older = L.filter(e => e.d <= target);
+  const target = toISO(new Date(Date.now() - daysAgo * DAY)), older = L.filter(e => e.d <= target);
   return older.length ? older[older.length - 1] : L[0];
 }
-const fakeSt = e => { const diseases = DISEASES.map(d => ({ ...d, active: e.fat >= d.fat })); return { dead: false, fat: e.fat, muscle: e.muscle, hyg: e.hyg, diseases,
-  pimples: Math.round(clamp(e.fat / 100 * 7 + (1 - e.hyg / 100) * 5 - 2, 0, 12)), mood: 'happy' }; };
+const fakeSt = e => ({ dead: false, fat: e.fat, muscle: e.muscle, hyg: e.hyg, diseases: DISEASES.map(d => ({ ...d, active: e.fat >= d.fat })),
+  pimples: Math.round(clamp(e.fat / 100 * 7 + (1 - e.hyg / 100) * 5 - 2, 0, 12)), mood: 'happy' });
 
 function renderHamWeek(st) {
   if (st.dead) { $('#hamWeek').innerHTML = `<div class="kicker">Wochen-Fortschritt</div><p class="muted" style="margin:0">Kein Fortschritt mehr – dein Hamster ist gestorben.</p>`; return; }
-  const then = snapAt(7), now = { fat: st.fat, muscle: st.muscle, hyg: st.hyg };
-  const days = then ? Math.max(0, Math.round((Date.now() - fromISO(then.d).getTime()) / DAY)) : 0;
-  const thenSt = then ? fakeSt(then) : null;
-  const dF = then ? now.fat - then.fat : 0, dM = then ? now.muscle - then.muscle : 0, dH = then ? now.hyg - then.hyg : 0;
-  const dP = thenSt ? st.pimples - thenSt.pimples : 0;
+  const then = snapAt(7), days = then ? Math.max(0, Math.round((Date.now() - fromISO(then.d).getTime()) / DAY)) : 0, thenSt = then ? fakeSt(then) : null;
+  const dF = then ? st.fat - then.fat : 0, dM = then ? st.muscle - then.muscle : 0, dH = then ? st.hyg - then.hyg : 0, dP = thenSt ? st.pimples - thenSt.pimples : 0;
   const healed = thenSt ? thenSt.diseases.filter(d => d.active && !st.diseases.find(x => x.id === d.id).active) : [];
-  const better = -dF + dM + dH / 4 > .3, worse = -dF + dM + dH / 4 < -.3;
-  const sign = (v, d = 1) => (v > 0 ? '+' : '') + kg(v, d);
-  // Wochenpunkte für die Mini-Kurve (bis 8 Wochen)
+  const better = -dF + dM + dH / 4 > .3, worse = -dF + dM + dH / 4 < -.3, sign = (v, d = 1) => (v > 0 ? '+' : '') + kg(v, d);
   const pts = []; for (let wk = 8; wk >= 0; wk--) { const e = snapAt(wk * 7); if (e && (!pts.length || pts[pts.length - 1].d !== e.d)) pts.push(e); }
   let chart = '';
   if (pts.length > 1) {
@@ -1110,41 +1343,28 @@ function renderHamWeek(st) {
       ${pts.map((p, i) => `<circle cx="${x(i)}" cy="${y(p.fat)}" r="3" fill="#ff5a36"/><circle cx="${x(i)}" cy="${y(p.muscle)}" r="3" fill="#f1efe6"/>`).join('')}</svg>
       <div class="muted" style="font-size:11.5px"><span style="color:#ff5a36">━</span> Fett &nbsp; <span style="color:#f1efe6">━</span> Muskeln · letzte ${pts.length} Wochen</div>`;
   }
-  // Nächste Ziele mit Prognose aus den letzten 14 Tagen
   const two = snapAt(14), rateF = two && days > 0 ? (st.fat - two.fat) / Math.max(1, (Date.now() - fromISO(two.d).getTime()) / DAY) * 7 : null;
-  const nextDis = st.diseases.filter(d => d.active).sort((a, b) => b.fat - a.fat)[0];
-  const nextPerk = PERKS.filter(p => st.fat >= p.fat).sort((a, b) => b.fat - a.fat)[0];
-  const nextRank = RANKS.find(r => r[0] > st.form);
+  const nextDis = st.diseases.filter(d => d.active).sort((a, b) => b.fat - a.fat)[0], nextPerk = PERKS.filter(p => st.fat >= p.fat).sort((a, b) => b.fat - a.fat)[0], nextRank = RANKS.find(r => r[0] > st.form);
   const eta = target => rateF && rateF < -.05 ? ` · ca. ${Math.max(1, Math.ceil((st.fat - target) / -rateF))} Wo.` : '';
-  const goals = [
-    nextDis ? `❤️ <b>${nextDis.name}</b> heilt unter ${nextDis.fat} % Fett (noch ${kg(st.fat - nextDis.fat + .01, 1)} %)${eta(nextDis.fat)}` : '',
-    nextPerk ? `🎁 Bonus <b>${nextPerk.name}</b> unter ${nextPerk.fat} % Fett${eta(nextPerk.fat)}` : '',
-    nextRank ? `🏅 Rang <b>${nextRank[1]}</b> bei Form ${nextRank[0]} (jetzt ${kg(st.form, 0)})` : ''
-  ].filter(Boolean);
-
+  const goals = [nextDis ? `❤️ <b>${nextDis.name}</b> heilt unter ${nextDis.fat} % Fett (noch ${kg(st.fat - nextDis.fat + .01, 1)} %)${eta(nextDis.fat)}` : '',
+    nextPerk ? `🎁 Bonus <b>${nextPerk.name}</b> unter ${nextPerk.fat} % Fett${eta(nextPerk.fat)}` : '', nextRank ? `🏅 Rang <b>${nextRank[1]}</b> bei Form ${nextRank[0]} (jetzt ${kg(st.form, 0)})` : ''].filter(Boolean);
   $('#hamWeek').innerHTML = `<div class="kicker"><span>Wochen-Fortschritt</span><span>${then && days ? `seit ${days} ${days === 1 ? 'Tag' : 'Tagen'}` : 'ab heute'}</span></div>
-    ${then && days ? `<div class="ba">
-      <div><svg viewBox="-10 0 260 240">${hamSVG(thenSt, 'idle', state.equip)}</svg><span class="muted mono" style="font-size:11px">VOR ${days} T.</span></div>
-      <div class="arrow">➜</div>
-      <div><svg viewBox="-10 0 260 240">${hamSVG(st, 'idle')}</svg><span class="muted mono" style="font-size:11px">HEUTE</span></div></div>
+    ${then && days ? `<div class="ba"><div><svg viewBox="-10 0 260 240">${hamSVG(thenSt, 'idle')}</svg><span class="muted mono" style="font-size:11px">VOR ${days} T.</span></div>
+      <div class="arrow">➜</div><div><svg viewBox="-10 0 260 240">${hamSVG(st, 'idle')}</svg><span class="muted mono" style="font-size:11px">HEUTE</span></div></div>
       <p style="margin:0 0 6px;font-weight:700">${better ? `📈 ${esc(st.h.name)} geht's besser als vor ${days} Tagen!` : worse ? '📉 Es ging bergab – Zeit fürs Training!' : '➖ Kaum Veränderung – bleib dran.'}</p>
-      <div class="pills">
-        <span class="pill ${dF < 0 ? 'up' : dF > 0 ? 'down' : 'eq'}">Fett ${sign(dF)} %</span>
-        <span class="pill ${dM > 0 ? 'up' : dM < 0 ? 'down' : 'eq'}">Muskeln ${sign(dM)} %</span>
-        <span class="pill ${dH > 0 ? 'up' : dH < 0 ? 'down' : 'eq'}">Pflege ${sign(dH, 0)}</span>
-        <span class="pill ${dP < 0 ? 'up' : dP > 0 ? 'down' : 'eq'}">Pickel ${sign(dP, 0)}</span>
-      </div>
+      <div class="pills"><span class="pill ${dF < 0 ? 'up' : dF > 0 ? 'down' : 'eq'}">Fett ${sign(dF)} %</span><span class="pill ${dM > 0 ? 'up' : dM < 0 ? 'down' : 'eq'}">Muskeln ${sign(dM)} %</span>
+        <span class="pill ${dH > 0 ? 'up' : dH < 0 ? 'down' : 'eq'}">Pflege ${sign(dH, 0)}</span><span class="pill ${dP < 0 ? 'up' : dP > 0 ? 'down' : 'eq'}">Pickel ${sign(dP, 0)}</span></div>
       ${healed.length ? `<div class="alert soft">❤️ Diese Woche geheilt: ${healed.map(d => d.name).join(', ')}</div>` : ''}`
       : `<p class="muted" style="margin:0 0 8px">Ab jetzt merkt sich die App jeden Tag, wie es deinem Hamster geht. In ein paar Tagen siehst du hier Vorher/Nachher.</p>`}
-    ${chart}
-    ${goals.length ? `<div style="margin-top:10px;font-size:13.5px;line-height:1.7">${goals.map(g => `<div>${g}</div>`).join('')}</div>` : ''}`;
+    ${chart}${goals.length ? `<div style="margin-top:10px;font-size:13.5px;line-height:1.7">${goals.map(g => `<div>${g}</div>`).join('')}</div>` : ''}`;
 }
 
 // =====================================================================
 //  Hamster – Bereich
 // =====================================================================
 function reqOk(r, t, st) { return (!r.h || t.hours >= r.h) && (!r.n || t.n >= r.n) && (!r.m || st.muscle >= r.m); }
-function reqTxt(r) { return [r.h ? `${r.h} Std.` : '', r.n ? `${r.n} Trainings` : '', r.m ? `${r.m} % Muskeln` : ''].filter(Boolean).join(' · '); }
+function reqTxt(r) { return [r.n ? `${r.n} Trainings` : '', r.h ? `${r.h} Std.` : '', r.m ? `${r.m} % Muskeln` : ''].filter(Boolean).join(' + '); }
+function reqProgress(r, t, st) { return [r.n ? `${Math.min(t.n, r.n)}/${r.n} Trainings` : '', r.h ? `${kg(Math.min(t.hours, r.h), 0)}/${r.h} Std.` : '', r.m ? `${kg(Math.min(st.muscle, r.m), 0)}/${r.m} % Muskeln` : ''].filter(Boolean).join(' · '); }
 const testoUnlocked = t => t.days >= 182 && t.hours >= 200;
 
 function renderHamster() {
@@ -1153,9 +1373,8 @@ function renderHamster() {
   $('#hamScene').innerHTML = sceneSVG(st, 'idle', { say: hamSays(st) }) +
     `<div class="scene-chip l">${w.ic} ${w.temp != null ? kg(w.temp, 0) + ' °C · ' : ''}${w.desc}</div>` +
     (state.geo ? '' : `<button class="scene-chip r" id="geoBtn">📍 Echtes Wetter</button>`) +
-    (st.dead ? `<div class="rip"><div class="comic" style="font-size:40px;color:#ffe45c;text-shadow:3px 3px 0 #000">R.I.P. ${esc(st.h.name)}</div>
-       <div style="color:#ddd;margin:2px 0 10px;font-size:13px">An Fettleibigkeit gestorben</div>
-       <button class="btn" id="adopt">🐹 Neuen Hamster adoptieren</button></div>` : '');
+    (st.dead ? `<div class="rip"><div class="comic" style="font-size:36px;color:#ffe45c">R.I.P. ${esc(st.h.name)}</div>
+       <div style="color:#ddd;margin:2px 0 10px;font-size:13px">An Fettleibigkeit gestorben</div><button class="btn" id="adopt">🐹 Neuen Hamster adoptieren</button></div>` : '');
   const lvl = levelOf(state.xp), lo = xpFor(lvl), hi = xpFor(lvl + 1);
   $('#hamName').textContent = st.h.name;
   $('#hamTags').innerHTML = `<span class="tag ${st.dead ? 'red' : 'lime'}">${st.dead ? 'Tot' : st.rank}</span> <span class="tag outline">Gen. ${st.h.gen}</span>${state.testo ? ' <span class="tag gold">💉 Testo</span>' : ''}`;
@@ -1164,83 +1383,68 @@ function renderHamster() {
   $('#hamMsg').innerHTML = st.dead ? `Du hast ${DEATH_D} Tage nicht trainiert. Adoptier einen neuen Hamster – er startet wieder fett.`
     : st.mood === 'sad' ? `⚠️ ${esc(st.h.name)} verfettet und verliert Muskeln! Ohne Training stirbt er in <b style="color:var(--orange)">${fmtDays(st.dieIn)}</b>.`
     : st.losing ? `${esc(st.h.name)} baut gerade Muskeln ab (−${kg(st.lossRate, 1)} %/Tag) und wird fetter. Zeit fürs Training!`
-    : st.fat >= 60 ? `${esc(st.h.name)} ist ziemlich fett, krank und ungepflegt. Mit jedem Training wird er fitter – und irgendwann zum Bodybuilder.`
+    : st.fat >= 60 ? `${esc(st.h.name)} ist fett, krank, ungepflegt und haust in einem Karton. Jedes Training bringt ihn ein Stück weiter – das dauert Monate.`
     : `${esc(st.h.name)} ist in Form. Ruhetage ohne Abbau noch ${fmtDays(Math.max(0, st.graceLeft))}.`;
-
   $('#hamStats').innerHTML = `<div class="kicker">Körper</div>
     <div class="bar-l"><span>Muskeln</span><span class="${st.losing ? 'down' : ''}">${st.losing ? `▼ −${kg(st.lossRate, 1)}/Tag · ` : ''}${kg(st.muscle, 1)} %</span></div>
     <div class="bar mus ${st.losing ? 'losing' : ''}"><i style="width:${st.muscle}%"></i></div>
     <div class="bar-l"><span>Körperfett</span><span class="${st.losing ? 'down' : ''}">${st.losing ? `▲ +${kg(FAT_PER_DAY, 1)}/Tag · ` : ''}${kg(st.fat, 1)} %</span></div>
     <div class="bar fat"><i style="width:${st.fat}%;background-position:${-300 + 300 * (1 - st.fat / 100)}px 0"></i></div>
-    <div class="bar-l"><span>Pflege</span><span>${kg(st.hyg, 0)} %</span></div>
-    <div class="bar hyg"><i style="width:${st.hyg}%"></i></div>
-    <div class="stats" style="margin-top:4px">
-      <div class="stat"><div class="v">${st.pimples}</div><div class="l">Pickel</div></div>
-      <div class="stat"><div class="v">${st.h.sessions}</div><div class="l">Trainings</div></div>
-      <div class="stat"><div class="v">${kg(t.hours, 1)}</div><div class="l">Std. gesamt</div></div>
-    </div>`;
+    <div class="bar-l"><span>Pflege</span><span>${kg(st.hyg, 0)} %</span></div><div class="bar hyg"><i style="width:${st.hyg}%"></i></div>
+    <div class="stats" style="margin-top:4px"><div class="stat"><div class="v">${st.pimples}</div><div class="l">Pickel</div></div>
+      <div class="stat"><div class="v">${st.h.sessions}</div><div class="l">Trainings</div></div><div class="stat"><div class="v">${kg(t.hours, 1)}</div><div class="l">Std. gesamt</div></div></div>`;
   renderHamWeek(st);
   const activeP = st.dead ? [] : PERKS.filter(p => perk(p.id, st.fat));
   $('#hamPerks').innerHTML = `<div class="kicker"><span>Boni durch weniger Fett</span><span>${activeP.length}/${PERKS.length} aktiv</span></div>` +
-    PERKS.map(p => { const on = activeP.includes(p); return `<div class="perk ${on ? '' : 'off'}"><span class="pi">${p.ic}</span><span style="flex:1"><b>${p.name}</b><br><span class="muted" style="font-size:12px">${p.txt}</span></span>
-      <span class="tag ${on ? 'lime' : ''}">${on ? 'Aktiv' : `unter ${p.fat} %`}</span></div>`; }).join('');
+    PERKS.map(p => { const on = activeP.includes(p); return `<div class="perk ${on ? '' : 'off'}"><span class="pi">${p.ic}</span><span style="flex:1"><b>${p.name}</b><br><span class="muted" style="font-size:12px">${p.txt}</span></span><span class="tag ${on ? 'lime' : ''}">${on ? 'Aktiv' : `unter ${p.fat} %`}</span></div>`; }).join('');
   const act = st.diseases.filter(d => d.active).length;
   $('#hamDiseases').innerHTML = `<div class="kicker"><span>Gesundheit</span><span>${act ? `<span class="down">${act} krank</span>` : '<span class="up">gesund</span>'}</span></div>` +
-    st.diseases.map(d => `<div class="dis ${d.active ? '' : 'healed'}"><span>${d.ic} <b>${d.name}</b><br><span class="muted" style="font-size:12px">${d.active ? d.txt : 'geheilt'}</span></span>
-      <span class="tag ${d.active ? 'red' : 'lime'}">${d.active ? `heilt unter ${d.fat} % Fett` : '✓ geheilt'}</span></div>`).join('');
-
-  // Shop
+    st.diseases.map(d => `<div class="dis ${d.active ? '' : 'healed'}"><span>${d.ic} <b>${d.name}</b><br><span class="muted" style="font-size:12px">${d.active ? d.txt : 'geheilt'}</span></span><span class="tag ${d.active ? 'red' : 'lime'}">${d.active ? `heilt unter ${d.fat} % Fett` : '✓ geheilt'}</span></div>`).join('');
+  renderShop(st, t);
+  const A = [['🎯', 'Erstes Training', t.n >= 1], ['🔟', '10 Trainings', t.n >= 10], ['⏱️', '10 Stunden', t.hours >= 10], ['🔥', '50 Stunden', t.hours >= 50],
+    ['💀', '25× Muskelversagen', t.fails >= 25], ['✨', 'Keine Pickel', st.pimples === 0 && !st.dead], ['❤️', 'Alle Krankheiten geheilt', !act && !st.dead],
+    ['🏠', 'Raus aus dem Karton', state.equip.home && state.equip.home !== 'box'], ['🎁', 'Alle Boni aktiv', activeP.length === PERKS.length], ['💪', 'Bodybuilder-Rang', st.form >= 65 && !st.dead],
+    ['🏎️', 'Sportwagen-Besitzer', state.items.includes('sportscar')], ['🏆', '200 Stunden', t.hours >= 200], ['💉', 'Testo freigeschaltet', testoUnlocked(t)]];
+  $('#achievements').innerHTML = `<div class="kicker"><span>Erfolge</span><span>${A.filter(a => a[2]).length}/${A.length}</span></div><div class="ach">${A.map(a => `<div class="${a[2] ? '' : 'off'}"><span>${a[0]}</span>${a[1]}</div>`).join('')}</div>`;
+  if ($('#geoBtn')) $('#geoBtn').onclick = askLocation;
+  if ($('#adopt')) $('#adopt').onclick = () => { const o = state.ham; state.ham = newHam(o.gen + 1, o.deaths + 1, o.name); state.hamUndo = null; save(); renderHamster(); toast('🐹 Willkommen, neuer Hamster!'); };
+  refreshWeather();
+}
+function renderShop(st, t) {
   const tUn = testoUnlocked(t);
-  const list = ITEMS.filter(it => shopFilter === 'all' ? true : shopFilter === 'meme' ? it.meme : shopFilter === 'own' ? state.items.includes(it.id)
-    : shopFilter === 'extra' ? ['gear', 'back', 'aura', 'neck', 'waist', 'wrist', 'ears', 'legs'].includes(it.slot) : shopFilter === 'head' ? ['head', 'eyes'].includes(it.slot)
-    : shopFilter === 'face' ? it.slot === 'face' : shopFilter === 'body' ? ['body', 'legs'].includes(it.slot) : it.slot === shopFilter);
+  const inFilter = it => shopFilter === 'all' ? !it.start || state.items.includes(it.id) : shopFilter === 'env' ? ENV_SLOTS.includes(it.slot) : shopFilter === 'body' ? ['body', 'legs', 'feet', 'waist'].includes(it.slot)
+    : shopFilter === 'head' ? ['head', 'eyes', 'face', 'ears', 'neck'].includes(it.slot) : shopFilter === 'hand' ? ['hand', 'wrist', 'gear', 'back', 'aura'].includes(it.slot)
+    : shopFilter === 'lux' ? it.lux : shopFilter === 'meme' ? it.meme : state.items.includes(it.id);
+  const list = ITEMS.filter(inFilter);
   $('#shop').innerHTML = `<div class="kicker"><span>Shop</span><span class="coins">🌻 ${state.coins} Kerne${perk('shred', st.fat) && !st.dead ? ' · −10 %' : ''}</span></div>
-    <p class="muted" style="margin:-2px 0 10px">Kerne gibt's fürs Training – je länger, mehr Sätze, Muskelversagen und Bestwerte, desto mehr. Bessere Sachen schaltest du mit mehr Trainingsstunden frei.</p>
+    <p class="muted" style="margin:-2px 0 10px">Zum Freischalten brauchst du <b>beides</b>: genug 🌻 Kerne <b>und</b> genug Trainings bzw. Stunden. Vom Karton bis zur Villa – und den Sportwagen gibt's nur für richtig viel Training.</p>
     <div class="filters">${FILTERS.map(([id, n]) => `<button data-filter="${id}" class="${shopFilter === id ? 'on' : ''}">${n}</button>`).join('')}</div>
     <div class="shop">
-      ${shopFilter === 'all' ? `<div class="item special ${tUn ? '' : 'locked'}">
-        <div style="display:flex;justify-content:space-between;align-items:center"><span class="ic">💉</span>${state.testo ? '<span class="tag gold">Aktiv</span>' : ''}</div>
+      ${shopFilter === 'all' ? `<div class="item special ${tUn ? '' : 'locked'}"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:26px">💉</span>${state.testo ? '<span class="tag gold">Aktiv</span>' : ''}</div>
         <b>Testo-Booster</b><span class="req">Muskeln wachsen 60 % schneller. Freischaltung: ½ Jahr Training (${Math.floor(t.days)}/182 Tage) und 200 Std. (${kg(t.hours, 0)}/200).</span>
         <button class="btn small" data-testo ${tUn ? '' : 'disabled'}>${state.testo ? 'Deaktivieren' : tUn ? 'Aktivieren' : '🔒 Gesperrt'}</button></div>` : ''}
       ${list.map(it => {
-        const own = state.items.includes(it.id), ok = reqOk(it.req, t, st), worn = state.equip[it.slot] === it.id, price = priceOf(it, st.fat);
-        const label = own ? (worn ? 'Ausziehen' : 'Anziehen') : !ok ? '🔒 ' + reqTxt(it.req) : `🌻 ${price}`;
-        return `<div class="item ${!own && !ok ? 'locked' : ''} ${worn ? 'worn' : ''}">${it.meme ? '<span class="meme">MEME</span>' : ''}<span class="ic">${it.ic}</span><b>${it.name}</b>
-          <span class="req">${SLOT_NAMES[it.slot]} · ${own ? (worn ? 'angezogen' : 'im Besitz') : reqTxt(it.req) || 'sofort verfügbar'}</span>
-          <button class="btn small ${own ? 'ghost' : ''}" data-item="${it.id}" ${!own && (!ok || state.coins < price) ? 'disabled' : ''}>${label}</button></div>`;
+        const own = state.items.includes(it.id), ok = reqOk(it.req, t, st), worn = state.equip[it.slot] === it.id, price = priceOf(it, st.fat), env = ENV_SLOTS.includes(it.slot);
+        const label = own ? (worn ? (env ? 'Aufgestellt' : 'Ausziehen') : (env ? 'Aufstellen' : 'Anziehen')) : !ok ? '🔒 Gesperrt' : state.coins < price ? `🌻 ${price}` : `Kaufen · 🌻 ${price}`;
+        return `<div class="item ${!own && !ok ? 'locked' : ''} ${worn ? 'worn' : ''}">${it.meme ? '<span class="meme">MEME</span>' : it.lux ? '<span class="meme lux">LUXUS</span>' : ''}
+          <div class="pv">${itemPreview(it)}</div><b>${it.name}</b>
+          <span class="req">${SLOT_NAMES[it.slot]}${own ? (worn ? ' · in Benutzung' : ' · im Besitz') : ` · 🌻 ${price}${reqTxt(it.req) ? '<br>' + reqProgress(it.req, t, st) : ''}`}</span>
+          <button class="btn small ${own ? 'ghost' : ''}" data-item="${it.id}" ${(!own && (!ok || state.coins < price)) || (own && worn && env) ? 'disabled' : ''}>${label}</button></div>`;
       }).join('') || '<div class="empty" style="grid-column:1/-1">Hier ist noch nichts.</div>'}
     </div>`;
-
-  // Erfolge
-  const A = [
-    ['🎯', 'Erstes Training', t.n >= 1], ['🔟', '10 Trainings', t.n >= 10], ['⏱️', '10 Stunden', t.hours >= 10], ['🔥', '50 Stunden', t.hours >= 50],
-    ['💀', '25× Muskelversagen', t.fails >= 25], ['✨', 'Keine Pickel', st.pimples === 0 && !st.dead], ['❤️', 'Alle Krankheiten geheilt', !act && !st.dead],
-    ['🎁', 'Alle Boni aktiv', activeP.length === PERKS.length], ['💪', 'Bodybuilder-Rang', st.form >= 65 && !st.dead], ['🛍️', '10 Shop-Items', state.items.length >= 10],
-    ['🏆', '200 Stunden', t.hours >= 200], ['💉', 'Testo freigeschaltet', tUn]
-  ];
-  $('#achievements').innerHTML = `<div class="kicker"><span>Erfolge</span><span>${A.filter(a => a[2]).length}/${A.length}</span></div>
-    <div class="ach">${A.map(a => `<div class="${a[2] ? '' : 'off'}"><span>${a[0]}</span>${a[1]}</div>`).join('')}</div>`;
-
-  if ($('#geoBtn')) $('#geoBtn').onclick = askLocation;
-  if ($('#adopt')) $('#adopt').onclick = () => {
-    const o = state.ham; state.ham = newHam(o.gen + 1, o.deaths + 1, o.name); state.hamUndo = null; save(); renderHamster(); toast('🐹 Willkommen, neuer Hamster!');
-  };
-  refreshWeather();
 }
-$('#hamName').onclick = () => {
-  const n = prompt('Wie soll dein Hamster heißen?', ham().name);
-  if (n && n.trim()) { ham().name = n.trim().slice(0, 16); save(); renderHamster(); }
-};
+$('#hamName').onclick = () => { const n = prompt('Wie soll dein Hamster heißen?', ham().name); if (n && n.trim()) { ham().name = n.trim().slice(0, 16); save(); renderHamster(); } };
 $('#shop').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b || b.disabled) return;
-  if (b.dataset.filter) { shopFilter = b.dataset.filter; renderHamster(); return; }
+  if (b.dataset.filter) { shopFilter = b.dataset.filter; renderShop(hamNow(), totals()); return; }
   if (b.dataset.testo !== undefined) { state.testo = !state.testo; save(); renderHamster(); toast(state.testo ? '💉 Testo-Booster aktiv' : 'Testo-Booster aus'); return; }
   const it = ITEMS.find(i => i.id === b.dataset.item); if (!it) return;
+  const env = ENV_SLOTS.includes(it.slot);
   if (!state.items.includes(it.id)) {
-    const price = priceOf(it, hamNow().fat);
-    if (state.coins < price) return;
-    state.coins -= price; state.items.push(it.id); state.equip[it.slot] = it.id; toast(`${it.ic} ${it.name} gekauft!`);
-  } else state.equip[it.slot] = state.equip[it.slot] === it.id ? null : it.id;
+    const price = priceOf(it, hamNow().fat); if (state.coins < price) return;
+    if (price >= 3000 && !confirm(`${it.name} für 🌻 ${price} kaufen?`)) return;
+    state.coins -= price; state.items.push(it.id); state.equip[it.slot] = it.id; toast(`🎉 ${it.name} gekauft!`);
+  } else state.equip[it.slot] = env ? it.id : (state.equip[it.slot] === it.id ? null : it.id);
   save(); renderHamster(); updateHeader();
   $('#hamScene').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
@@ -1363,7 +1567,7 @@ function startSession(planId) {
   const st = hamNow();
   showModal(`<div class="kicker"><b>● Timer läuft</b><span>${p ? esc(p.name) : 'Freies Training'}</span></div>
     <div class="quote">${pick(PRE)}</div>
-    <div class="mini-scene" style="margin:0 0 12px">${sceneSVG(st.dead ? { ...st, dead: false, mood: 'happy' } : st, 'lift', { slice: true })}</div>
+    <div class="mini-scene" style="margin:0 0 12px">${sceneSVG(st.dead ? { ...st, dead: false, mood: 'happy' } : st, 'lift', { slice: true, scale: .64 })}</div>
     <p class="muted" style="margin:-4px 0 12px">${esc(st.h.name)} trainiert mit dir mit. 🐹</p>
     <button class="btn big full" data-close>Los geht's</button>`);
 }
@@ -1418,7 +1622,7 @@ function renderSession() {
   $('#sessTitle').textContent = d.planName || 'Freies Training';
   $('#exList').innerHTML = allExerciseNames().map(n => `<option value="${esc(n)}">`).join('');
   const st = hamNow();
-  $('#sessScene').innerHTML = sceneSVG(st.dead ? { ...st, dead: false, mood: 'happy' } : st, 'lift', { slice: true });
+  $('#sessScene').innerHTML = sceneSVG(st.dead ? { ...st, dead: false, mood: 'happy' } : st, 'lift', { slice: true, scale: .64 });
   $('#restChips').innerHTML = `<span>Pause</span>` + [60, 90, 120, 180].map(s => `<button data-rest="${s}" class="${state.restDefault === s ? 'on' : ''}">${s < 120 ? s + 's' : s / 60 + 'm'}</button>`).join('');
   updateTimers(); renderLiveSummary();
   if (!d.exercises.length) { $('#exercises').innerHTML = `<div class="card empty">Füge oben deine erste Übung hinzu.</div>`; return; }
@@ -1510,7 +1714,7 @@ function startRest(sec) {
 }
 function renderRestPanel() {
   const st = hamNow();
-  $('#restPanel').innerHTML = `${sceneSVG(st.dead ? { ...st, dead: false, mood: 'happy' } : st, 'lift', { slice: true, scale: .82 })}
+  $('#restPanel').innerHTML = `${sceneSVG(st.dead ? { ...st, dead: false, mood: 'happy' } : st, 'lift', { slice: true, scale: .64 })}
     <div class="rbody"><div class="kicker"><b>Satzpause</b><span>${esc(st.h.name)} trainiert weiter …</span></div>
       <div class="count" id="restCount">0:00</div>
       <div class="bar" style="margin:8px 0 10px"><i id="restBar" style="width:100%"></i></div>
